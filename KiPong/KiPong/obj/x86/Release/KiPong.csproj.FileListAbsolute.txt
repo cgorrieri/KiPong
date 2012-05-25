@@ -1,0 +1,8 @@
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\Font.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\balle.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\KiPong.exe
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\KiPong.pdb
+D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\KiPong.exe
+D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\KiPong.pdb

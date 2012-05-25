@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiPong", "KiPong\KiPong\KiPong.csproj", "{6E225C4B-F6AD-4775-BEB5-999E2D8CB409}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "KiPongContent", "KiPong\KiPongContent\KiPongContent.contentproj", "{B004181C-A362-41A8-8484-8BBC3B96C2C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E225C4B-F6AD-4775-BEB5-999E2D8CB409}.Debug|x86.ActiveCfg = Debug|x86
+		{6E225C4B-F6AD-4775-BEB5-999E2D8CB409}.Debug|x86.Build.0 = Debug|x86
+		{6E225C4B-F6AD-4775-BEB5-999E2D8CB409}.Release|x86.ActiveCfg = Release|x86
+		{6E225C4B-F6AD-4775-BEB5-999E2D8CB409}.Release|x86.Build.0 = Release|x86
+		{B004181C-A362-41A8-8484-8BBC3B96C2C1}.Debug|x86.ActiveCfg = Debug|x86
+		{B004181C-A362-41A8-8484-8BBC3B96C2C1}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
