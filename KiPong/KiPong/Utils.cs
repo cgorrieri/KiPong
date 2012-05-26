@@ -36,13 +36,21 @@ namespace KiPong
             sb.Draw(rectTitle, new Vector2(r.X, r.Y), Color.White);
         }
 
+        /// <summary>
+        /// Dessine le texte au milieu d'un rectangle
+        /// </summary>
+        /// <param name="sb"></param>
+        /// <param name="font"></param>
+        /// <param name="r">Rectangle</param>
+        /// <param name="text">Texte a écrire</param>
+        /// <param name="color"></param>
         public static void DrawStringAtCenter(SpriteBatch sb, SpriteFont font, Rectangle r, String text, Color color)
         {
             sb.DrawString(font, text, new Vector2((r.Width - font.MeasureString(text).X) / 2 + r.X, (r.Height - font.MeasureString(text).Y) / 2 + r.Y), color);
         }
 
         /// <summary>
-        /// 
+        /// Joue un bip
         /// </summary>
         /// <param name="Amplitude"></param>
         /// <param name="Frequency"></param>
@@ -87,8 +95,10 @@ namespace KiPong
             }
         }
 
-        // Méthode permettant de lancer la synthese vocale asynchrone
-        //
+        /// <summary>
+        /// Méthode permettant de lancer la synthese vocale asynchrone
+        /// </summary>
+        /// <param name="texte">Texte à dire</param>
         public static void SpeechAsynchroneOld(String texte)
         {
             SpeechSynthesizer s = new SpeechSynthesizer();
@@ -97,8 +107,10 @@ namespace KiPong
             s.SpeakAsync(builder);
         }
 
-        // Méthode permettant de lancer la synthese vocale asynchrone
-        //
+        /// <summary>
+        /// Méthode permettant de lancer la synthese vocale asynchrone
+        /// </summary>
+        /// <param name="texte">Texte à dire</param>
         public static void SpeechAsynchrone(String texte)
         {
             if (OldSpeech != null) OldSpeech.Pause();
@@ -110,8 +122,10 @@ namespace KiPong
             OldSpeech = s;
         }
 
-        // Méthode permettant de lancer la synchronisation de maniere synchrone
-        //
+        /// <summary>
+        /// Méthode permettant de lancer la synthese vocale synchrone
+        /// </summary>
+        /// <param name="texte">Texte à dire</param>
         public static void SpeechSynchrone(String text)
         {
             SpeechSynthesizer s = new SpeechSynthesizer();
@@ -120,13 +134,19 @@ namespace KiPong
             s.Speak(text);
         }
 
-        // Arreter l'execution du speech
+        /// <summary>
+        /// Arrette la voix en cour
+        /// </summary>
+        /// <param name="texte">Texte à dire</param>
         public static void SpeechStop()
         {
             OldSpeech.Pause();
         }
 
-        // Jouer le son definit par le chemin path
+        /// <summary>
+        /// Joue le son
+        /// </summary>
+        /// <param name="path">Path vers le lien</param>
         public static void PlaySong(String path)
         {
             sound = new SoundPlayer(path);
@@ -140,6 +160,9 @@ namespace KiPong
             }
         }
 
+        /// <summary>
+        /// Stop le son qui est en train de jouer
+        /// </summary>
         public static void StopSong()
         {
             if (sound != null) sound.Stop();
