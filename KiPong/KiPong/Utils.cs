@@ -17,7 +17,7 @@ using System.IO;
 using Microsoft.DirectX.DirectSound;
 using System.Media;
 
-// tralala
+// tralalala
 namespace KiPong
 {
     public static class Utils
