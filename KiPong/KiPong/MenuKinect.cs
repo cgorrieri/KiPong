@@ -14,14 +14,15 @@ namespace KiPong
     {
 
         KinectInput input;
-        public MenuKinect(Game1 g, String title, List<string> items, KinectInput input)
-            : base(g, title, items)
+        public MenuKinect(Game1 g, KinectInput input)
+            : base(g)
         {
             this.input = input;
         }
 
         public override void Update()
         {
+            base.Update();
             float count = (float)MenuItems.Count;
             float ratio = (float)input.LeftY / (float)game.ScreenHeight;
             for (int i = 1; i <= count; i++)

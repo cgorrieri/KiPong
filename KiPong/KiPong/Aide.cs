@@ -23,8 +23,7 @@ namespace KiPong
 
         public void Speech()
         {
-            // TODO lancer speech
-            // Speech.speech(text)
+            Utils.SpeechAsynchrone(text);
         }
 
         public void Draw(SpriteBatch batch)

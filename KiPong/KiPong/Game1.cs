@@ -70,7 +70,8 @@ namespace KiPong
             screenWidth = 800;
             keyboardInput = new KeyboardInput(this);
             keyboardInput.IsHoldable = false;
-            ModeMenu = new MenuKeyboard(this, "Mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" }, keyboardInput);
+            ModeMenu = new MenuKeyboard(this, keyboardInput);
+            SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             aideMenuKeyboard = new Aide(this, "aideMenuKinectImg", "aideMenuKinectTxt");
             gamestate = GameStates.ModeMenu;
             graphics.PreferredBackBufferWidth = screenWidth;
@@ -81,7 +82,6 @@ namespace KiPong
 
             IsKinectMode = false;
 
-            // TODO: Add your initialization logic here
             base.Initialize();
         }
 
@@ -132,18 +132,29 @@ namespace KiPong
             {
                 kinectInput = new KinectInput(this);
                 IsOnePlayer = true;
-                PlayingMenu = new MenuKinect(this, "KiPong", new List<string>() { "1 joueur", "2 joueurs" }, kinectInput);
-                DifficultyMenu = new MenuKinect(this, "Difficultes", new List<string>() { "Facile", "Medium", "Difficile" }, kinectInput);
-                PauseMenu = new MenuKinect(this, "Pause", new List<string>() { "Reprendre", "Menu", "Quitter" }, kinectInput);
-                EndMenu = new MenuKinect(this, "", new List<string>() { "Menu", "Quitter" }, kinectInput);
+                PlayingMenu = new MenuKinect(this, kinectInput);
+                DifficultyMenu = new MenuKinect(this, kinectInput);
+                PauseMenu = new MenuKinect(this, kinectInput);
+                EndMenu = new MenuKinect(this, kinectInput);
             }
             else
             {
-                PlayingMenu = new MenuKeyboard(this, "KiPong", new List<string>() { "1 joueur", "2 joueurs" }, keyboardInput);
-                DifficultyMenu = new MenuKeyboard(this, "Difficultes", new List<string>() { "Facile", "Medium", "Difficile" }, keyboardInput);
-                PauseMenu = new MenuKeyboard(this, "Pause", new List<string>() { "Reprendre", "Menu", "Quitter" }, keyboardInput);
-                EndMenu = new MenuKeyboard(this, "", new List<string>() { "Menu", "Quitter" }, keyboardInput);
+                PlayingMenu = new MenuKeyboard(this, keyboardInput);
+                DifficultyMenu = new MenuKeyboard(this, keyboardInput);
+                PauseMenu = new MenuKeyboard(this, keyboardInput);
+                EndMenu = new MenuKeyboard(this, keyboardInput);
             }
+            SetMenu(PlayingMenu, "KiPong", "Choisis le nombre de joueurs", new List<string>() { "1 joueur", "2 joueurs" });
+            SetMenu(DifficultyMenu, "Difficultes", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
+            SetMenu(PauseMenu, "Pause", "Que veux-tu faire", new List<string>() { "Reprendre", "Menu", "Quitter" });
+            EndMenu.MenuItems = new List<string>() { "Menu", "Quitter" };
+        }
+
+        private void SetMenu(Menu menu, string title, string desc, List<string> items)
+        {
+            menu.Title = title;
+            menu.Description = desc;
+            menu.MenuItems = items;
         }
 
         /// <summary>
@@ -191,6 +202,7 @@ namespace KiPong
             else if (gamestate == GameStates.ModeMenu)
             {
                 ModeMenu.Update();
+                
                 // Lors de la selection
                 if (ModeMenu.Valid)
                 {
@@ -208,7 +220,8 @@ namespace KiPong
                         this.Exit();
                     }
                     SetMenus();
-                    //ModeMenu.Iterator = 0;
+                    PlayingMenu.Start = true;
+                    ModeMenu.Iterator = 0;
                 }
             }
             #endregion ModeMenu
@@ -220,6 +233,7 @@ namespace KiPong
                 if (PlayingMenu.Valid)
                 {
                     gamestate = GameStates.DifficultyMenu;
+                    DifficultyMenu.Start = true;
                     if (PlayingMenu.Iterator == 0)
                     {
                         IsOnePlayer = true;
@@ -233,6 +247,7 @@ namespace KiPong
                 if (PlayingMenu.Back)
                 {
                     gamestate = GameStates.ModeMenu;
+                    ModeMenu.Start = true;
                     IsKinectMode = false;
                 }
             }
@@ -264,6 +279,7 @@ namespace KiPong
                 if (DifficultyMenu.Back)
                 {
                     gamestate = GameStates.PlayingMenu;
+                    PlayingMenu.Start = true;
                 }
             }
             #endregion DifficultyMenu
@@ -284,6 +300,7 @@ namespace KiPong
                     else if (PauseMenu.Iterator == 1)
                     {
                         gamestate = GameStates.PlayingMenu;
+                        PlayingMenu.Start = true;
                     }
                     else if (PauseMenu.Iterator == 2)
                     {
@@ -310,6 +327,7 @@ namespace KiPong
                     if (EndMenu.Iterator == 0)
                     {
                         gamestate = GameStates.PlayingMenu;
+                        PlayingMenu.Start = true;
                     }
                     else if (EndMenu.Iterator == 1)
                     {

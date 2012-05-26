@@ -12,35 +12,47 @@ namespace KiPong
 
     public abstract class Menu
     {
-        protected List<string> MenuItems;
-        private int iterator;
+        public List<string> MenuItems;
+        private int iterator, lastIterator;
         public string Title { get; set; }
         protected Game1 game;
+        public string Description { get; set;}
+        public bool Start { get; set; }
         public bool Valid { get; set; }
         public bool Back { get; set; }
         public int Iterator
         {
-            get
-            {
-                return iterator;
-            }
+            get { return iterator; }
             set
             {
                 iterator = value;
                 if (iterator > MenuItems.Count - 1) iterator = MenuItems.Count - 1;
                 if (iterator < 0) iterator = 0;
+                if (lastIterator != iterator)
+                {
+                    lastIterator = iterator;
+                    Utils.SpeechAsynchrone(MenuItems[Iterator]);
+                }
             }
         }
 
-        public Menu(Game1 g, String title, List<string> items)
+        public Menu(Game1 g)
         {
             game = g;
-            Title = title;
-            MenuItems = items;
-            Iterator = 0;
+            iterator = lastIterator = 0;
         }
 
-        public abstract void Update();
+        public virtual void Update()
+        {
+            if (Start)
+            {
+                Utils.SpeechStop();
+                Utils.SpeechSynchrone(Description);
+                lastIterator = -1;
+                Start = false;
+                Iterator=0;
+            }
+        }
 
         public int GetNumberOfOptions()
         {

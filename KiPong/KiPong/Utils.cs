@@ -14,7 +14,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
-using Microsoft.DirectX.DirectSound;
 using System.Media;
 
 // test
@@ -108,7 +107,7 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Méthode permettant de lancer la synthese vocale asynchrone
+        /// Méthode permettant de lancer la synthese vocale asynchrone et de couper celle qui est en cours si il y en a une
         /// </summary>
         /// <param name="texte">Texte à dire</param>
         public static void SpeechAsynchrone(String texte)
@@ -140,7 +139,8 @@ namespace KiPong
         /// <param name="texte">Texte à dire</param>
         public static void SpeechStop()
         {
-            OldSpeech.Pause();
+            if(OldSpeech != null)
+                OldSpeech.Pause();
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace KiPong
             {
                 sound.Play();
             }
-            catch (InvalidOperationException e)
+            catch (Exception e)
             {
                 Console.Write("Erreur de lecture du song : " + e.Message);
             }
