@@ -5,6 +5,7 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
+	// Un nouveau commentaire
     public class Ball
     {
         private bool isVisible;
