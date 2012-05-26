@@ -4,33 +4,36 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Audio;
+    using Microsoft.Xna.Framework.Media;
 
     public class Ball
     {
         private bool isVisible;
-        private Vector2 position;
+        private Vector2 position, resetPos;
         private double direction;
         private Texture2D texture;
         private Rectangle size;
-        private float speed;
-        private float baseSpeed, increaseSpeed;
-        private Vector2 resetPos;
-        private float scale;
-        Random rand;
+        private float speed, baseSpeed, increaseSpeed, scale;
+        private Random rand;
+        private SoundEffect test;
+        private Game1 game;
 
-        public Ball(Game1 game, Difficulty d)
+        public Ball(Game1 g, Difficulty d)
         {
             // creer la balle
             setSpeed(d);
-            int width = game.ScreenWidth / 30;
-            texture = game.Content.Load<Texture2D>("balle");
+            game = g;
+            int width = g.ScreenWidth / 30;
+            texture = g.Content.Load<Texture2D>("balle");
             scale = (float) width / (float) texture.Width;
             size = new Rectangle(0, 0, width, width);
-            resetPos = new Vector2(game.ScreenWidth / 2, game.ScreenHeight / 2);
+            resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
             position = resetPos;
             direction = 0;
             rand = new Random();
             isVisible = false;
+            test = g.Content.Load<SoundEffect>("WallHit");
         }
 
         private void setSpeed(Difficulty d)
@@ -57,9 +60,11 @@
         {
             while (direction > 2 * Math.PI) direction -= 2 * Math.PI;
             while (direction < 0) direction += 2 * Math.PI;
-            if (position.Y <= 0 || (position.Y > resetPos.Y * 2 - size.Height))
+            if ((position.Y <= 0 && direction > Math.PI) || 
+                (position.Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
             {
                 direction = 2 * Math.PI - direction;
+                test.Play();
             }
         }
 
