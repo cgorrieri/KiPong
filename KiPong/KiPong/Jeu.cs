@@ -19,6 +19,10 @@ namespace KiPong
         public bool Finish {get; set;}
         public bool IsOnePlayer;
 
+        /* DRAW */
+        private Vector2 posPointsJ1, posPointsJ2;
+        private Rectangle line;
+
         /* -- TIMER --*/
         // Le temps qui s'écoule entre lorsqu'un but est marqué ou au départ
         private int resetTimer, afterPauseTimer;
@@ -26,6 +30,7 @@ namespace KiPong
         private bool resetTimerInUse;
         private string decompte;
 
+        /* STRINGS */
         private const String YouWin = "Vous avez gagner !";
         private const String BotWin = "Vous avez perdu ...";
         private const String PlayerOneWin = "Le joueur 1 gagne !";
@@ -40,28 +45,34 @@ namespace KiPong
             resetTimerInUse = true;
             decompte = "";
             lastScored = Side.LEFT;
+
+            // DRAW
+            int Wdiv2 = game.ScreenWidth / 2;
+            posPointsJ1 = new Vector2(Wdiv2 - game.Font.MeasureString("0").X - 15, 10);
+            posPointsJ2 = new Vector2(Wdiv2 + 15, 10);
+            line = new Rectangle(Wdiv2 - 5, 0, 10, game.ScreenHeight);
         }
 
         protected abstract void setBats();
 
+        /// <summary>
+        /// Met en place le timer pour que la partie ne reprène pas directement après la pause
+        /// </summary>
         public void SetAfterPause()
         {
             afterPauseTimer = 50;
         }
 
+        /// <summary>
+        /// Met à jour l'état du jeu
+        /// </summary>
         public void Update()
         {
+            #region Timer
             if (afterPauseTimer > 0)
             {
                 afterPauseTimer--;
                 return;
-            }
-
-            if (playerOne.GetPoints() > 5 
-                || IsOnePlayer && bot.GetPoints() > 5
-                || !IsOnePlayer && playerTwo.GetPoints() > 5)
-            {
-                Finish = true;
             }
 
             if (resetTimerInUse)
@@ -82,6 +93,14 @@ namespace KiPong
                 resetTimerInUse = false;
                 ball.Reset(lastScored);
                 resetTimer = 0;
+            }
+            #endregion Timer
+
+            if (playerOne.GetPoints() > 5 
+                || IsOnePlayer && bot.GetPoints() > 5
+                || !IsOnePlayer && playerTwo.GetPoints() > 5)
+            {
+                Finish = true;
             }
 
             playerOne.Update();
@@ -127,6 +146,11 @@ namespace KiPong
             }
         }
 
+        /// <summary>
+        /// Récupère le block de la bat sur lequelle la ball tape
+        /// </summary>
+        /// <param name="bat">La Bat où il y a collision</param>
+        /// <returns></returns>
         private int CheckHitLocation(Bat bat)
         {
             int block = 0;
@@ -144,6 +168,9 @@ namespace KiPong
             return block;
         }
 
+        /// <summary>
+        /// Augmente la vitesse de la balle et des battes
+        /// </summary>
         protected virtual void IncreaseSpeed()
         {
             ball.IncreaseSpeed();
@@ -152,9 +179,9 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Retourne le message quand le jeu est fini
+        /// Donne le message correspondant à l'état de la fin du jeu
         /// </summary>
-        /// <returns></returns>
+        /// <returns>L'état si le jeu est fini sinon vide</returns>
         public String getMessage()
         {
             if (Finish)
@@ -175,17 +202,23 @@ namespace KiPong
             return "";
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, SpriteFont font)
+        /// <summary>
+        /// Dessine le jeu
+        /// </summary>
+        public virtual void Draw()
         {
-            playerOne.Draw(spriteBatch);
             Bat secondBat = IsOnePlayer ? bot : playerTwo;
-            secondBat.Draw(spriteBatch);
-            ball.Draw(spriteBatch);
-            // Dessine les points
-            spriteBatch.DrawString(font, playerOne.GetPoints().ToString(), new Vector2(game.ScreenWidth / 4 - font.MeasureString(playerOne.GetPoints().ToString()).X, 20), Color.White);
-            spriteBatch.DrawString(font, secondBat.GetPoints().ToString(), new Vector2(game.ScreenWidth / 4 * 3 - font.MeasureString(secondBat.GetPoints().ToString()).X, 20), Color.White);
+            // Points et ligne
+            game.SpriteBatch.DrawString(game.Font, playerOne.GetPoints().ToString(), posPointsJ1, Color.White);
+            game.SpriteBatch.DrawString(game.Font, secondBat.GetPoints().ToString(), posPointsJ2, Color.White);
+            Utils.DrawRectangle(game.SpriteBatch, line, Color.Gray);
+            // Bats et ball
+            playerOne.Draw(game.SpriteBatch);
+            secondBat.Draw(game.SpriteBatch);
+            ball.Draw(game.SpriteBatch);
+            // Timer si activé
             if (resetTimerInUse)
-                game.DrawStringAtCenter(spriteBatch, decompte, Color.White);
+                game.DrawStringAtCenter(decompte, Color.White);
         }
     }
 }

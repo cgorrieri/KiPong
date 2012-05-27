@@ -24,9 +24,9 @@ namespace KiPong
         public static SpeechSynthesizer OldSpeech;
         public static SoundPlayer sound;
 
-        public static void DrawRectangle(SpriteBatch sb, GraphicsDevice gd, Rectangle r, Color c)
+        public static void DrawRectangle(SpriteBatch sb, Rectangle r, Color c)
         {
-            Texture2D rectTitle = new Texture2D(gd, r.Width, r.Height);
+            Texture2D rectTitle = new Texture2D(sb.GraphicsDevice, r.Width, r.Height);
             Color[] dataTitle = new Color[r.Width * r.Height];
             for (int i = 0; i < dataTitle.Length; ++i) dataTitle[i] = c;
             rectTitle.SetData(dataTitle);

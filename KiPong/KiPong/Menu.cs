@@ -54,38 +54,29 @@ namespace KiPong
             }
         }
 
-        public int GetNumberOfOptions()
+        public void Draw()
         {
-            return MenuItems.Count;
-        }
-
-        public string GetItem(int index)
-        {
-            return MenuItems[index];
-        }
-
-        public void Draw(SpriteBatch sb, SpriteFont font)
-        {
+            int count = MenuItems.Count;
             int margin = (int)(game.ScreenHeight * 0.01);
-            int height = game.ScreenHeight / (1 + GetNumberOfOptions()) - margin * (2 + GetNumberOfOptions()) / (1 + GetNumberOfOptions());
+            int height = game.ScreenHeight / (1 + count) - margin * (2 + count) / (1 + count);
             int width = game.ScreenWidth - 2 * margin;
 
             Rectangle r = new Rectangle(margin, margin, width, height);
-            Utils.DrawRectangle(sb, game.GraphicsDevice, r, Color.Yellow);
-            Utils.DrawStringAtCenter(sb, font, r, Title, Color.Blue);
+            Utils.DrawRectangle(game.SpriteBatch, r, Color.Yellow);
+            Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, Title, Color.Blue);
             
-            for (int i = 0; i < GetNumberOfOptions(); i++)
+            for (int i = 0; i < count; i++)
             {
                 r.Y += height + margin;
                 if (i == Iterator)
                 {
-                    Utils.DrawRectangle(sb, game.GraphicsDevice, r, Color.Red);
+                    Utils.DrawRectangle(game.SpriteBatch, r, Color.Red);
                 }
                 else
                 {
-                    Utils.DrawRectangle(sb, game.GraphicsDevice, r, Color.Aqua);
+                    Utils.DrawRectangle(game.SpriteBatch, r, Color.Aqua);
                 }
-                Utils.DrawStringAtCenter(sb, font, r, GetItem(i), Color.White);
+                Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Color.White);
             }
         }
     }

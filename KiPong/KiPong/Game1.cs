@@ -26,21 +26,23 @@ namespace KiPong
         private KinectInput kinectInput;
         private KeyboardInput keyboardInput;
         private int screenWidth;
-        public int ScreenWidth
-        { get { return screenWidth; } }
+        public int ScreenWidth { get { return screenWidth; } }
         private int screenHeight;
-        public int ScreenHeight
-        { get { return screenHeight; } }
+        public int ScreenHeight { get { return screenHeight; } }
         private Rectangle screen;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        public SpriteBatch SpriteBatch { get { return spriteBatch; } }
         private SpriteFont font;
+        public SpriteFont Font { get { return font; } }
+        private Texture2D splashScreen;
 
         /* AIDES */
         private Aide aideMenuKeyboard, aideMenuKinect, aideJeu;
 
         public enum GameStates
         {
+            SplashScreen,
             ModeMenu,
             PlayingMenu,
             DifficultyMenu,
@@ -64,10 +66,10 @@ namespace KiPong
         protected override void Initialize()
         {
             // récupère la taille exacte de l'ecran
-            //screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            //screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             screenHeight = 600;
             screenWidth = 800;
+            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             keyboardInput = new KeyboardInput(this);
             keyboardInput.IsHoldable = false;
             ModeMenu = new MenuKeyboard(this, keyboardInput);
@@ -352,27 +354,27 @@ namespace KiPong
             spriteBatch.Begin();
             if (gamestate == GameStates.Running)
             {
-                jeu.Draw(spriteBatch, font);
+                jeu.Draw();
             }
             else if (gamestate == GameStates.ModeMenu)
             {
-                ModeMenu.Draw(spriteBatch, font);
+                ModeMenu.Draw();
             }
             else if (gamestate == GameStates.PlayingMenu)
             {
-                PlayingMenu.Draw(spriteBatch, font);
+                PlayingMenu.Draw();
             }
             else if (gamestate == GameStates.DifficultyMenu)
             {
-                DifficultyMenu.Draw(spriteBatch, font);
+                DifficultyMenu.Draw();
             }
             else if (gamestate == GameStates.PauseMenu)
             {
-                PauseMenu.Draw(spriteBatch, font);
+                PauseMenu.Draw();
             }
             else if (gamestate == GameStates.EndMenu)
             {
-                EndMenu.Draw(spriteBatch, font);
+                EndMenu.Draw();
             }
             spriteBatch.End();
 
@@ -381,9 +383,9 @@ namespace KiPong
 
 
         #region Helpers
-        public void DrawStringAtCenter(SpriteBatch sb, String text, Color color)
+        public void DrawStringAtCenter(String text, Color color)
         {
-            Utils.DrawStringAtCenter(sb, font, screen, text, color);
+            Utils.DrawStringAtCenter(spriteBatch, font, screen, text, color);
         }
         #endregion Helpers
     }
