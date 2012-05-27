@@ -35,7 +35,10 @@ namespace KiPong
         public SpriteBatch SpriteBatch { get { return spriteBatch; } }
         private SpriteFont font;
         public SpriteFont Font { get { return font; } }
+
+        /* -- SPLASH SCREEN -- */
         private Texture2D splashScreen;
+        private TimeSpan splashScreenTimer;
 
         /* AIDES */
         private Aide aideMenuKeyboard, aideMenuKinect, aideJeu;
@@ -66,16 +69,15 @@ namespace KiPong
         protected override void Initialize()
         {
             // récupère la taille exacte de l'ecran
-            screenHeight = 600;
-            screenWidth = 800;
-            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            screenHeight = 770;
+            screenWidth = 1024;
+            //screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            //screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             keyboardInput = new KeyboardInput(this);
             keyboardInput.IsHoldable = false;
             ModeMenu = new MenuKeyboard(this, keyboardInput);
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             aideMenuKeyboard = new Aide(this, "aideMenuKinectImg", "aideMenuKinectTxt");
-            gamestate = GameStates.ModeMenu;
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.IsFullScreen = false;
@@ -83,6 +85,8 @@ namespace KiPong
             screen = new Rectangle(0, 0, screenWidth, screenHeight);
 
             IsKinectMode = false;
+            splashScreenTimer = new TimeSpan(0, 0, 3);
+            gamestate = GameStates.SplashScreen;
 
             base.Initialize();
         }
@@ -94,6 +98,7 @@ namespace KiPong
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
+            splashScreen = Content.Load<Texture2D>("SplashScreen");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -182,7 +187,7 @@ namespace KiPong
                     return;
                 }
             }
-
+            
             #region Playing
             if (gamestate == GameStates.Running)
             {
@@ -339,6 +344,17 @@ namespace KiPong
                 }
             }
             #endregion EndMenu
+            #region SplashCreen
+            else if (gamestate == GameStates.SplashScreen)
+            {
+                splashScreenTimer -= gameTime.ElapsedGameTime;
+                if (splashScreenTimer.CompareTo(new TimeSpan(0)) <= 0)
+                {
+                    gamestate = GameStates.ModeMenu;
+                    ModeMenu.Start = true;
+                }
+            }
+            #endregion SplashCreen
 
             base.Update(gameTime);
         }
@@ -375,6 +391,10 @@ namespace KiPong
             else if (gamestate == GameStates.EndMenu)
             {
                 EndMenu.Draw();
+            }
+            else if (gamestate == GameStates.SplashScreen)
+            {
+                SpriteBatch.Draw(splashScreen, splashScreen.Bounds, Color.White);
             }
             spriteBatch.End();
 
