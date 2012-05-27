@@ -12,14 +12,12 @@ namespace KiPong
 
     public abstract class Menu
     {
+        protected Game1 game;
+        // Menu
+        public string Title { get; set; }
+        public string Description { get; set; }
         public List<string> MenuItems;
         private int iterator, lastIterator;
-        public string Title { get; set; }
-        protected Game1 game;
-        public string Description { get; set;}
-        public bool Start { get; set; }
-        public bool Valid { get; set; }
-        public bool Back { get; set; }
         public int Iterator
         {
             get { return iterator; }
@@ -35,16 +33,26 @@ namespace KiPong
                 }
             }
         }
+        private Aide aide;
+        public bool Help { get; set; }
+        private bool isPrintingHelp;
+        // Draw
+        private bool isDraw;
+        public bool Start { get; set; }
+        // Actions
+        public bool Valid { get; set; }
+        public bool Back { get; set; }
 
-        public Menu(Game1 g)
+        public Menu(Game1 g, Aide a)
         {
             game = g;
+            aide = a;
             iterator = lastIterator = 0;
         }
 
         public virtual void Update()
         {
-            if (Start)
+            if (Start && isDraw)
             {
                 Utils.SpeechStop();
                 Utils.SpeechSynchrone(Description);
@@ -52,10 +60,31 @@ namespace KiPong
                 Start = false;
                 Iterator=0;
             }
+
+            if (Help && !isPrintingHelp)
+            {
+                isPrintingHelp = true;
+                aide.Speech();
+            }
+            else if (Help && isPrintingHelp)
+            {
+                isPrintingHelp = false;
+                Utils.SpeechStop();
+                Start = true;
+            }
         }
 
         public void Draw()
         {
+            // Aide
+            if (isPrintingHelp)
+            {
+                aide.Draw(game.SpriteBatch);
+                return;
+            }
+
+            isDraw = Start;
+
             int count = MenuItems.Count;
             int margin = (int)(game.ScreenHeight * 0.01);
             int height = game.ScreenHeight / (1 + count) - margin * (2 + count) / (1 + count);

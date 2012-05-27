@@ -40,9 +40,6 @@ namespace KiPong
         private Texture2D splashScreen;
         private TimeSpan splashScreenTimer;
 
-        /* AIDES */
-        private Aide aideMenuKeyboard, aideMenuKinect, aideJeu;
-
         public enum GameStates
         {
             SplashScreen,
@@ -77,7 +74,6 @@ namespace KiPong
             keyboardInput.IsHoldable = false;
             ModeMenu = new MenuKeyboard(this, keyboardInput);
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
-            aideMenuKeyboard = new Aide(this, "aideMenuKinectImg", "aideMenuKinectTxt");
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.IsFullScreen = false;
@@ -173,6 +169,13 @@ namespace KiPong
         {
             keyboardInput.Update();
 
+            if (keyboardInput.Exit)
+            {
+                this.Exit();
+            }
+
+            bool AskHelping = IsKinectMode ? keyboardInput.Aide() || kinectInput.Aide() : keyboardInput.Aide();
+
             // Si on en en mode kinect et quelle n'est pas prète on retourne
             if (IsKinectMode)
             {
@@ -208,6 +211,7 @@ namespace KiPong
             #region ModeMenu
             else if (gamestate == GameStates.ModeMenu)
             {
+                ModeMenu.Help = AskHelping;
                 ModeMenu.Update();
                 
                 // Lors de la selection
@@ -235,6 +239,7 @@ namespace KiPong
             #region Menu Jouer
             else if (gamestate == GameStates.PlayingMenu)
             {
+                PlayingMenu.Help = AskHelping;
                 PlayingMenu.Update();
                 // Lors de la selection
                 if (PlayingMenu.Valid)
@@ -262,6 +267,7 @@ namespace KiPong
             #region DifficultyMenu
             else if (gamestate == GameStates.DifficultyMenu)
             {
+                DifficultyMenu.Help = AskHelping;
                 DifficultyMenu.Update();
 
                 // Lors de la selection
@@ -293,6 +299,7 @@ namespace KiPong
             #region PauseMenu
             else if (gamestate == GameStates.PauseMenu)
             {
+                PauseMenu.Help = AskHelping;
                 PauseMenu.Update();
 
                 // Lors de la selection
@@ -326,6 +333,7 @@ namespace KiPong
             #region EndMenu
             else if (gamestate == GameStates.EndMenu)
             {
+                EndMenu.Help = AskHelping;
                 EndMenu.Update();
 
                 // Lors de la selection

@@ -72,5 +72,10 @@ namespace KiPong
         {
             return keyboardState.IsKeyDown(Keys.F1) && lastState.IsKeyUp(Keys.F1);
         }
+
+        public bool Exit
+        {
+            get { return keyboardState.IsKeyDown(Keys.Escape); }
+        }
     }
 }

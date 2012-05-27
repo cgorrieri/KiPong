@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.String">
+    Pour te déplacer dans le menu, utilise les flèches haut et bas ou les touches z et s.
+    Pour valider appui su entrez.
+    Pour aller au menu précédent apui sur la touche effacer ou la flèche vers la gauche.
+    Pour faire apparaitre l'aide ou la quitter, appui sur F1.
+  </Asset>
+</XnaContent>

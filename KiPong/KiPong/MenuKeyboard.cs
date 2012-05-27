@@ -14,7 +14,7 @@ namespace KiPong
     {
         KeyboardInput input;
         public MenuKeyboard(Game1 g, KeyboardInput input)
-            : base(g)
+            : base(g, new Aide(g, "aideMenuKeyboardImg", "aideMenuKeyboardTxt"))
         {
             this.input = input;
         }
