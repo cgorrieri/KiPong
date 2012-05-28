@@ -8,6 +8,7 @@ using Microsoft.Kinect;
 namespace KiPong
 {
     public enum KinectState { OK, PENDING, NO }
+
     public class KinectInput : Input
     {
         const int skeletonCount = 2;
@@ -18,7 +19,7 @@ namespace KiPong
         /// <summary>
         /// Etats des positions précédentes
         /// </summary>
-        private bool lastBack, lastEnter;
+        private bool lastBack, lastEnter, lastAide;
 
         private bool Ready
         {
@@ -104,7 +105,7 @@ namespace KiPong
             // Skeleton Stream
             kinectSensor.SkeletonStream.Enable(new TransformSmoothParameters()
             {
-                Smoothing = 1.0f,
+                Smoothing = 0.9f,
                 Correction = 0.1f,
                 Prediction = 0.1f,
                 JitterRadius = 0.05f,
@@ -124,7 +125,6 @@ namespace KiPong
 
         void kinectSensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            Console.WriteLine("SkeletonReady");
             using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
             {
                 if (skeletonFrame != null)
@@ -181,26 +181,14 @@ namespace KiPong
 
         #endregion
 
-        public override void Update()
-        {
-            
-        }
-
         public override bool Retour()
         {
             if (ReadyForOne)
             {
                 bool now = playerOne.Joints[JointType.HandRight].Position.X < playerOne.Joints[JointType.Spine].Position.X;
-                if (now && !lastBack)
-                {
-                    lastBack = now;
-                    return true;
-                }
-                else
-                {
-                    lastBack = now;
-                    return false;
-                }
+                bool result = now && !lastBack;
+                lastBack = now;
+                return result;
             }
             return false;
         }
@@ -210,16 +198,10 @@ namespace KiPong
             if (ReadyForOne)
             {
                 bool now = playerOne.Joints[JointType.HandLeft].Position.X > playerOne.Joints[JointType.Spine].Position.X;
-                if (now && !lastEnter)
-                {
-                    lastEnter = now;
-                    return true;
-                }
-                else
-                {
-                    lastEnter = now;
-                    return false;
-                }
+                bool result = now && !lastEnter;
+                lastEnter = now;
+                return result;
+                
             }
             return false;
         }
@@ -228,17 +210,10 @@ namespace KiPong
         {
             if (ReadyForOne)
             {
-                bool now = playerOne.Joints[JointType.HandLeft].Position.Y < playerOne.Joints[JointType.Head].Position.Y;
-                if (now && !lastEnter)
-                {
-                    lastEnter = now;
-                    return true;
-                }
-                else
-                {
-                    lastEnter = now;
-                    return false;
-                }
+                bool now = playerOne.Joints[JointType.HandLeft].Position.Y > playerOne.Joints[JointType.Head].Position.Y;
+                bool result = now && !lastAide;
+                lastAide = now;
+                return result;
             }
             return false;
         }

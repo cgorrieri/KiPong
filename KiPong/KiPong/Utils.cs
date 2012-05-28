@@ -1,7 +1,7 @@
 ﻿#define _MICROSOFT_SPEECH
 #if MICROSOFT_SPEECH
 using Microsoft.Speech;
-using Microsoft.Speech.Synthetis;
+using Microsoft.Speech.Synthesis;
 #else
 using System.Speech;
 using System.Speech.Synthesis;

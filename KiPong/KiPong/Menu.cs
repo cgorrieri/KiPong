@@ -35,7 +35,7 @@ namespace KiPong
         }
         private Aide aide;
         public bool Help { get; set; }
-        private bool isPrintingHelp;
+        protected bool isPrintingHelp;
         // Draw
         private bool isDraw;
         public bool Start { get; set; }

@@ -23,19 +23,22 @@ namespace KiPong
         public override void Update()
         {
             base.Update();
-            float count = (float)MenuItems.Count;
-            float ratio = (float)input.LeftY / (float)game.ScreenHeight;
-            for (int i = 1; i <= count; i++)
+            if (!isPrintingHelp)
             {
-                if (ratio <= (float)i / count && ratio > (float)(i-1) /count )
+                float count = (float)MenuItems.Count;
+                float ratio = (float)input.LeftY / (float)game.ScreenHeight;
+                for (int i = 1; i <= count; i++)
                 {
-                    Iterator = i - 1;
-                    break;
+                    if (ratio <= (float)i / count && ratio > (float)(i - 1) / count)
+                    {
+                        Iterator = i - 1;
+                        break;
+                    }
                 }
-            }
 
-            Back = input.Retour();
-            Valid = input.Valider();
+                Back = input.Retour();
+                Valid = input.Valider();
+            }
         }
 
     }
