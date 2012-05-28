@@ -14,7 +14,6 @@
 * Voir Pour XNA
 
 ## Aide
-* Faire le scale de l'image pour qu'elle ai la taille de l'écran
 * Modifier tous les textes
 * Ajouter les images
 * Implémenter l'aide dans le jeu
