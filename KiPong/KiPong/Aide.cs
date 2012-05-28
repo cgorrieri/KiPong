@@ -28,6 +28,7 @@ namespace KiPong
                 scale = (float)game.ScreenWidth / (float)image.Width;
             }
             Console.WriteLine("image " + image.Width * scale + "x" + image.Height*scale);
+            text = g.Content.Load<String>(nameText);
         }
 
         public void Speech()

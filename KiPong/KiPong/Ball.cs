@@ -16,7 +16,7 @@
         private Rectangle size;
         private float speed, baseSpeed, increaseSpeed, scale;
         private Random rand;
-        private SoundEffect test;
+        private SoundEffect WallHitSong, BatHitSong;
         private Game1 game;
 
         public Ball(Game1 g, Difficulty d)
@@ -33,7 +33,8 @@
             direction = 0;
             rand = new Random();
             isVisible = false;
-            test = g.Content.Load<SoundEffect>("WallHit");
+            WallHitSong = g.Content.Load<SoundEffect>("WallHit");
+            BatHitSong = g.Content.Load<SoundEffect>("BatHit");
         }
 
         private void setSpeed(Difficulty d)
@@ -64,7 +65,7 @@
                 (position.Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
             {
                 direction = 2 * Math.PI - direction;
-                test.Play();
+                WallHitSong.Play();
             }
         }
 
@@ -198,6 +199,7 @@
             {
                 direction -= MathHelper.ToRadians(rand.Next(3));
             }
+            BatHitSong.Play();
         }
 
         /// <summary>
