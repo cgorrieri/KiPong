@@ -1,20 +1,13 @@
-﻿#define _MICROSOFT_SPEECH
-#if MICROSOFT_SPEECH
-using Microsoft.Speech;
-using Microsoft.Speech.Synthesis;
-#else
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Media;
 using System.Speech;
 using System.Speech.Synthesis;
-#endif
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
-using System.Media;
 
 // test
 namespace KiPong

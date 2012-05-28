@@ -18,7 +18,6 @@ namespace KiPong
             game = g;
             image = g.Content.Load<Texture2D>(nameImage);
             text = g.Content.Load<String>(nameText);
-            Console.WriteLine(text);
         }
 
         public void Speech()

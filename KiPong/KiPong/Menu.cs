@@ -47,7 +47,7 @@ namespace KiPong
         protected bool isPrintingHelp;
         // Draw
         private bool isDraw;
-        public bool Start { get; set; }
+        private bool start;
 
         private Rectangle rectTitle, rectItem;
         private int margin;
@@ -73,14 +73,16 @@ namespace KiPong
             rectItem = new Rectangle(margin, 0, width, height);
         }
 
+        public void StartDescription() { start = true; }
+
         public virtual void Update()
         {
-            if (Start && isDraw)
+            if (start && isDraw)
             {
                 Utils.SpeechStop();
                 Utils.SpeechSynchrone(Description);
                 lastIterator = -1;
-                Start = false;
+                start = false;
                 Iterator=0;
             }
 
@@ -93,7 +95,7 @@ namespace KiPong
             {
                 isPrintingHelp = false;
                 Utils.SpeechStop();
-                Start = true;
+                start = true;
             }
         }
 
@@ -106,7 +108,7 @@ namespace KiPong
                 return;
             }
 
-            isDraw = Start;
+            isDraw = start;
 
             Utils.DrawRectangle(game.SpriteBatch, rectTitle, Gray);
             Utils.DrawStringAtCenter(game.SpriteBatch, game.FontTitle, rectTitle, Title, Blue);
