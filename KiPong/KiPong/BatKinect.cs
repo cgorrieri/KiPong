@@ -24,7 +24,7 @@ namespace KiPong
         public override void Update()
         {
             if (side == Side.LEFT)
-                SetPosition(new Vector2(0, input.LeftY));
+                SetPosition(new Vector2(position.X, input.LeftY));
             else
                 SetPosition(new Vector2(position.X, input.LeftY));
         }

@@ -12,6 +12,9 @@ namespace KiPong
 
     public abstract class Menu
     {
+        private static Color Gray = new Color(238, 238, 238);
+        private static Color Blue = new Color(10, 0, 150);
+
         protected Game1 game;
         // Menu
         public string Title { get; set; }
@@ -91,21 +94,22 @@ namespace KiPong
             int width = game.ScreenWidth - 2 * margin;
 
             Rectangle r = new Rectangle(margin, margin, width, height);
-            Utils.DrawRectangle(game.SpriteBatch, r, Color.Yellow);
-            Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, Title, Color.Blue);
+            Utils.DrawRectangle(game.SpriteBatch, r, Gray);
+            Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, Title, Blue);
             
             for (int i = 0; i < count; i++)
             {
                 r.Y += height + margin;
                 if (i == Iterator)
                 {
-                    Utils.DrawRectangle(game.SpriteBatch, r, Color.Red);
+                    Utils.DrawRectangle(game.SpriteBatch, r, Color.White);
+                    Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Blue);
                 }
                 else
                 {
-                    Utils.DrawRectangle(game.SpriteBatch, r, Color.Aqua);
+                    Utils.DrawRectangle(game.SpriteBatch, r, Blue);
+                    Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Color.White);
                 }
-                Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Color.White);
             }
         }
     }

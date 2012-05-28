@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Kinect;
+using System.Threading;
 
 namespace KiPong
 {
@@ -55,6 +56,8 @@ namespace KiPong
         {
             if (kinectSensor != null)
             {
+                // On reset l'angle de la kinect 
+                kinectSensor.ElevationAngle = 0;
                 kinectSensor.Stop();
                 kinectSensor.Dispose();
             }
@@ -146,7 +149,9 @@ namespace KiPong
                             playerTwo = null;
                     }
                     if (playerOne != null)
+                    {
                         LeftY = UpdateHandsPosition(playerOne);
+                    }
                     if (playerTwo != null)
                     {
                         RightY = UpdateHandsPosition(playerTwo);
