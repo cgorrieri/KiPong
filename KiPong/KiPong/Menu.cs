@@ -14,12 +14,18 @@ namespace KiPong
     {
         private static Color Gray = new Color(238, 238, 238);
         private static Color Blue = new Color(10, 0, 150);
+        private static float ratioTitle = 5f / 16f;
 
         protected Game1 game;
         // Menu
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<string> MenuItems;
+        private List<string> menuItems;
+        public List<string> MenuItems
+        {
+            get { return menuItems; }
+            set { menuItems = value; SetItems(); }
+        }
         private int iterator, lastIterator;
         public int Iterator
         {
@@ -42,6 +48,9 @@ namespace KiPong
         // Draw
         private bool isDraw;
         public bool Start { get; set; }
+
+        private Rectangle rectTitle, rectItem;
+        private int margin;
         // Actions
         public bool Valid { get; set; }
         public bool Back { get; set; }
@@ -51,6 +60,17 @@ namespace KiPong
             game = g;
             aide = a;
             iterator = lastIterator = 0;
+            margin = (int)(game.ScreenHeight * 0.01);
+
+            int width = game.ScreenWidth - 2 * margin;
+            rectTitle = new Rectangle(margin, margin, width, (int)(game.ScreenHeight * ratioTitle));
+        }
+
+        private void SetItems()
+        {
+            int width = game.ScreenWidth - 2 * margin;
+            int height = (game.ScreenHeight - rectTitle.Height - (3 + menuItems.Count) * margin) / menuItems.Count;
+            rectItem = new Rectangle(margin, 0, width, height);
         }
 
         public virtual void Update()
@@ -88,27 +108,28 @@ namespace KiPong
 
             isDraw = Start;
 
-            int count = MenuItems.Count;
-            int margin = (int)(game.ScreenHeight * 0.01);
-            int height = game.ScreenHeight / (1 + count) - margin * (2 + count) / (1 + count);
-            int width = game.ScreenWidth - 2 * margin;
+            Utils.DrawRectangle(game.SpriteBatch, rectTitle, Gray);
+            Utils.DrawStringAtCenter(game.SpriteBatch, game.FontTitle, rectTitle, Title, Blue);
 
-            Rectangle r = new Rectangle(margin, margin, width, height);
-            Utils.DrawRectangle(game.SpriteBatch, r, Gray);
-            Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, Title, Blue);
-            
-            for (int i = 0; i < count; i++)
+            if (menuItems != null)
             {
-                r.Y += height + margin;
-                if (i == Iterator)
+                rectItem.Y = rectTitle.Height + 3 * margin;
+                Color back, font;
+                for (int i = 0; i < MenuItems.Count; i++)
                 {
-                    Utils.DrawRectangle(game.SpriteBatch, r, Color.White);
-                    Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Blue);
-                }
-                else
-                {
-                    Utils.DrawRectangle(game.SpriteBatch, r, Blue);
-                    Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, r, MenuItems[i], Color.White);
+                    if (i == Iterator)
+                    {
+                        back = Color.White;
+                        font = Blue;
+                    }
+                    else
+                    {
+                        back = Blue;
+                        font = Color.White;
+                    }
+                    Utils.DrawRectangle(game.SpriteBatch, rectItem, back);
+                    Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, rectItem, MenuItems[i], font);
+                    rectItem.Y += rectItem.Height + margin;
                 }
             }
         }

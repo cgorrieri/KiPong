@@ -33,8 +33,9 @@ namespace KiPong
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         public SpriteBatch SpriteBatch { get { return spriteBatch; } }
-        private SpriteFont font;
+        private SpriteFont font, fontTitle;
         public SpriteFont Font { get { return font; } }
+        public SpriteFont FontTitle { get { return fontTitle; } }
 
         /* -- SPLASH SCREEN -- */
         private Texture2D splashScreen;
@@ -94,6 +95,7 @@ namespace KiPong
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
+            fontTitle = Content.Load<SpriteFont>("FontTitle");
             splashScreen = Content.Load<Texture2D>("SplashScreen");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
