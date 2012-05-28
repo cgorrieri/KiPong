@@ -48,7 +48,7 @@ namespace KiPong
 
             // DRAW
             int Wdiv2 = game.ScreenWidth / 2;
-            posPointsJ1 = new Vector2(Wdiv2 - game.Font.MeasureString("0").X - 15, 10);
+            posPointsJ1 = new Vector2(Wdiv2 - game.FontTitle.MeasureString("0").X - 15, 10);
             posPointsJ2 = new Vector2(Wdiv2 + 15, 10);
             line = new Rectangle(Wdiv2 - 5, 0, 10, game.ScreenHeight);
         }
@@ -86,13 +86,13 @@ namespace KiPong
                     decompte = "1";
                 else
                     decompte = "";
-            }
 
-            if (resetTimer == 120)
-            {
-                resetTimerInUse = false;
-                ball.Reset(lastScored);
-                resetTimer = 0;
+                if (resetTimer == 120)
+                {
+                    resetTimerInUse = false;
+                    ball.Reset(lastScored);
+                    resetTimer = 0;
+                }
             }
             #endregion Timer
 
@@ -209,8 +209,8 @@ namespace KiPong
         {
             Bat secondBat = IsOnePlayer ? bot : playerTwo;
             // Points et ligne
-            game.SpriteBatch.DrawString(game.Font, playerOne.GetPoints().ToString(), posPointsJ1, Color.White);
-            game.SpriteBatch.DrawString(game.Font, secondBat.GetPoints().ToString(), posPointsJ2, Color.White);
+            game.SpriteBatch.DrawString(game.FontTitle, playerOne.GetPoints().ToString(), posPointsJ1, Color.White);
+            game.SpriteBatch.DrawString(game.FontTitle, secondBat.GetPoints().ToString(), posPointsJ2, Color.White);
             Utils.DrawRectangle(game.SpriteBatch, line, Color.Gray);
             // Bats et ball
             playerOne.Draw(game.SpriteBatch);
