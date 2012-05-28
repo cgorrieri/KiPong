@@ -22,18 +22,20 @@ namespace KiPong
         public override void Update()
         {
             base.Update();
-            if (input.DownRight || input.DownLeft)
+            if (!isPrintingHelp)
             {
-                Iterator++;
-            }
-            else if (input.UpRight || input.UpLeft)
-            {
-                Iterator--;
-            }
+                if (input.DownRight || input.DownLeft)
+                {
+                    Iterator++;
+                }
+                else if (input.UpRight || input.UpLeft)
+                {
+                    Iterator--;
+                }
 
-            Valid = input.Valider();
-            
-            Back = input.Retour();
+                Valid = input.Valider();
+                Back = input.Retour();
+            }
         }
     }
 }

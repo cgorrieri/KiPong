@@ -133,7 +133,6 @@ namespace KiPong
         {
             if (IsKinectMode)
             {
-                kinectInput = new KinectInput(this);
                 IsOnePlayer = true;
                 PlayingMenu = new MenuKinect(this, kinectInput);
                 DifficultyMenu = new MenuKinect(this, kinectInput);
@@ -175,21 +174,6 @@ namespace KiPong
             }
 
             bool AskHelping = IsKinectMode ? keyboardInput.Aide() || kinectInput.Aide() : keyboardInput.Aide();
-
-            // Si on en en mode kinect et quelle n'est pas prète on retourne
-            if (IsKinectMode)
-            {
-                if ((kinectInput.ReadyForOne && IsOnePlayer)
-                    || (kinectInput.ReadyForTwo && !IsOnePlayer))
-                {
-                    kinectInput.Update();
-                }
-                else
-                {
-                    base.Update(gameTime);
-                    return;
-                }
-            }
             
             #region Playing
             if (gamestate == GameStates.Running)
@@ -225,6 +209,7 @@ namespace KiPong
                     else if (ModeMenu.Iterator == 1)
                     {
                         IsKinectMode = true;
+                        kinectInput = new KinectInput(this);
                     }
                     else if (ModeMenu.Iterator == 2)
                     {
