@@ -29,5 +29,8 @@ Faire une installation pour installer:
 * Ajouter commentaire
 * Dessiner diagramme des classes
 
+## Pour du mieux
+Faire un cadre autour du titre et des boutons
+
 ## Tests
 Tester le jeu sur un PC qui n'as rien d'installer
