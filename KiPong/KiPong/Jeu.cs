@@ -207,6 +207,7 @@ namespace KiPong
         /// </summary>
         public virtual void Draw()
         {
+            game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
             Bat secondBat = IsOnePlayer ? bot : playerTwo;
             // Points et ligne
             game.SpriteBatch.DrawString(game.FontTitle, playerOne.GetPoints().ToString(), posPointsJ1, Color.White);

@@ -3,7 +3,6 @@
 ## Son
 ### Trouver son pour
 * Changement et validation d'item dans le menu
-* Quand la balle tape sur la raquette, le mur
 * Quand un joueur marque un point
 
 ## Faire SplashScreen
@@ -28,9 +27,6 @@ Faire une installation pour installer:
 * Améliorer le code avec plus d'héritage
 * Ajouter commentaire
 * Dessiner diagramme des classes
-
-## Pour du mieux
-Faire un cadre autour du titre et des boutons
 
 ## Tests
 Tester le jeu sur un PC qui n'as rien d'installer

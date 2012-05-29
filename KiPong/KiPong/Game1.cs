@@ -149,11 +149,18 @@ namespace KiPong
                 EndMenu = new MenuKeyboard(this, keyboardInput);
             }
             SetMenu(PlayingMenu, "Jouer", "Choisis le nombre de joueurs", new List<string>() { "1 joueur", "2 joueurs" });
-            SetMenu(DifficultyMenu, "Difficultes", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
+            SetMenu(DifficultyMenu, "Difficultés", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
             SetMenu(PauseMenu, "Pause", "Que veux-tu faire ?", new List<string>() { "Reprendre", "Menu", "Quitter" });
             SetMenu(EndMenu, "Fin du jeu", "", new List<string>() { "Menu", "Quitter" });
         }
 
+        /// <summary>
+        /// Itialize un menu
+        /// </summary>
+        /// <param name="menu">Le menu à initializer</param>
+        /// <param name="title">Le title du menu</param>
+        /// <param name="desc">La description qui sera dite par la synthèse vocale</param>
+        /// <param name="items">Les différent boutons</param>
         private void SetMenu(Menu menu, string title, string desc, List<string> items)
         {
             menu.Title = title;
@@ -174,6 +181,7 @@ namespace KiPong
                 this.Exit();
             }
 
+            // Si le joueur demande de l'aide
             bool AskHelping = IsKinectMode ? keyboardInput.Aide() || kinectInput.Aide() : keyboardInput.Aide();
             
             #region Playing
@@ -356,8 +364,6 @@ namespace KiPong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
             spriteBatch.Begin();
             if (gamestate == GameStates.Running)
             {
@@ -385,6 +391,7 @@ namespace KiPong
             }
             else if (gamestate == GameStates.SplashScreen)
             {
+                GraphicsDevice.Clear(Color.Black);
                 SpriteBatch.Draw(splashScreen, splashScreen.Bounds, Color.White);
             }
             spriteBatch.End();
