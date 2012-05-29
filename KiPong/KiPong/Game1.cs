@@ -77,7 +77,7 @@ namespace KiPong
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             screen = new Rectangle(0, 0, screenWidth, screenHeight);
 
@@ -150,8 +150,8 @@ namespace KiPong
             }
             SetMenu(PlayingMenu, "Jouer", "Choisis le nombre de joueurs", new List<string>() { "1 joueur", "2 joueurs" });
             SetMenu(DifficultyMenu, "Difficultes", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
-            SetMenu(PauseMenu, "Pause", "Que veux-tu faire", new List<string>() { "Reprendre", "Menu", "Quitter" });
-            EndMenu.MenuItems = new List<string>() { "Menu", "Quitter" };
+            SetMenu(PauseMenu, "Pause", "Que veux-tu faire ?", new List<string>() { "Reprendre", "Menu", "Quitter" });
+            SetMenu(EndMenu, "Fin du jeu", "", new List<string>() { "Menu", "Quitter" });
         }
 
         private void SetMenu(Menu menu, string title, string desc, List<string> items)
@@ -165,7 +165,6 @@ namespace KiPong
         /// Méthode appelé par le système de jeu en boucle
         /// </summary>
         /// <param name="gameTime"></param>
-        ///
         protected override void Update(GameTime gameTime)
         {
             keyboardInput.Update();
@@ -183,7 +182,6 @@ namespace KiPong
                 jeu.Update();
                 if (jeu.Finish)
                 {
-                    EndMenu.Title = "Fin du jeu";
                     EndMenu.Description = jeu.getMessage();
                     EndMenu.StartDescription();
                     keyboardInput.IsHoldable = false;
@@ -193,6 +191,7 @@ namespace KiPong
                 {
                     keyboardInput.IsHoldable = false;
                     gamestate = GameStates.PauseMenu;
+                    PauseMenu.StartDescription();
                 }
             }
             #endregion Playing
@@ -221,7 +220,6 @@ namespace KiPong
                     }
                     SetMenus();
                     PlayingMenu.StartDescription();
-                    ModeMenu.Iterator = 0;
                 }
             }
             #endregion ModeMenu
@@ -243,7 +241,6 @@ namespace KiPong
                     {
                         IsOnePlayer = false;
                     }
-                    PlayingMenu.Iterator = 0;
                 }
                 if (PlayingMenu.Back)
                 {
@@ -276,7 +273,6 @@ namespace KiPong
                     {
                         Jouer(Difficulty.HARD);
                     }
-                    DifficultyMenu.Iterator = 0;
                 }
                 if (DifficultyMenu.Back)
                 {
@@ -309,7 +305,6 @@ namespace KiPong
                     {
                         this.Exit();
                     }
-                    PauseMenu.Iterator = 0;
                 }
                 if (PauseMenu.Back)
                 {
@@ -337,7 +332,6 @@ namespace KiPong
                     {
                         this.Exit();
                     }
-                    EndMenu.Iterator = 0;
                 }
             }
             #endregion EndMenu
@@ -397,7 +391,6 @@ namespace KiPong
 
             base.Draw(gameTime);
         }
-
 
         #region Helpers
         public void DrawStringAtCenter(String text, Color color)
