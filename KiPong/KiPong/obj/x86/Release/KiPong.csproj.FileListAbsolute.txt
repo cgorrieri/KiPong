@@ -6,3 +6,16 @@ D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\ResolveAssemblyReference.ca
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\KiPong.exe
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Release\KiPong.pdb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\FontTitle.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideMenuKinectImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\SplashScreen.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideMenuKeyboardImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideJeuKeyboardImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideJeuKinectImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideMenuKinectTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideMenuKeyboardTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideJeuKeyboardTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideJeuKinectTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\WallHit.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\BatHit.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\goal.xnb
