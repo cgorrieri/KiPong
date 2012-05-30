@@ -8,3 +8,14 @@ D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Debug\KiPong.exe
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Debug\KiPong.pdb
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKinectImg.xnb
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKinectTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\WallHit.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\SplashScreen.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\FontTitle.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\BatHit.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\goal.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectImg.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectTxt.xnb

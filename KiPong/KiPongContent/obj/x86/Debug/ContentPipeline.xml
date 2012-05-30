@@ -8,7 +8,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\Font.xnb</Output>
-      <Time>2012-05-20T11:20:11.3354573+02:00</Time>
+      <Time>2012-05-29T15:49:56.4134574+02:00</Time>
     </Item>
     <Item>
       <Source>balle.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\balle.xnb</Output>
-      <Time>2012-05-20T11:11:57.5112122+02:00</Time>
+      <Time>2012-05-20T11:11:56+02:00</Time>
     </Item>
     <Item>
       <Source>aideMenuKinectImg.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKinectImg.xnb</Output>
-      <Time>2012-05-20T11:11:57.5112122+02:00</Time>
+      <Time>2012-05-28T12:22:19.6545476+02:00</Time>
     </Item>
     <Item>
       <Source>aideMenuKinectTxt.xml</Source>
@@ -35,7 +35,106 @@
       <Processor>PassThroughProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKinectTxt.xnb</Output>
-      <Time>2012-05-25T09:41:17.5693424+02:00</Time>
+      <Time>2012-05-26T18:37:44.7297217+02:00</Time>
+    </Item>
+    <Item>
+      <Source>WallHit.wav</Source>
+      <Name>WallHit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\WallHit.xnb</Output>
+      <Time>2012-05-26T19:41:30.7965602+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SplashScreen.jpg</Source>
+      <Name>SplashScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\SplashScreen.xnb</Output>
+      <Time>2012-05-27T12:10:47.9191063+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideMenuKeyboardImg.png</Source>
+      <Name>aideMenuKeyboardImg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardImg.xnb</Output>
+      <Time>2012-05-20T11:11:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideMenuKeyboardTxt.xml</Source>
+      <Name>aideMenuKeyboardTxt</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardTxt.xnb</Output>
+      <Time>2012-05-27T15:54:44.7271211+02:00</Time>
+    </Item>
+    <Item>
+      <Source>FontTitle.spritefont</Source>
+      <Name>FontTitle</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\FontTitle.xnb</Output>
+      <Time>2012-05-29T15:56:34.4322228+02:00</Time>
+    </Item>
+    <Item>
+      <Source>BatHit.wav</Source>
+      <Name>BatHit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\BatHit.xnb</Output>
+      <Time>2012-05-28T19:15:10.2797002+02:00</Time>
+    </Item>
+    <Item>
+      <Source>goal.wav</Source>
+      <Name>goal</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\goal.xnb</Output>
+      <Time>2012-05-30T11:49:45.7127456+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideJeuKeyboardImg.png</Source>
+      <Name>aideJeuKeyboardImg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardImg.xnb</Output>
+      <Time>2012-05-20T11:11:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideJeuKinectImg.png</Source>
+      <Name>aideJeuKinectImg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectImg.xnb</Output>
+      <Time>2012-05-28T12:22:19.6545476+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideJeuKeyboardTxt.xml</Source>
+      <Name>aideJeuKeyboardTxt</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardTxt.xnb</Output>
+      <Time>2012-05-30T19:14:41.7942083+02:00</Time>
+    </Item>
+    <Item>
+      <Source>aideJeuKinectTxt.xml</Source>
+      <Name>aideJeuKinectTxt</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectTxt.xnb</Output>
+      <Time>2012-05-26T18:37:44.7297217+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
