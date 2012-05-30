@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KiPong
 {
@@ -14,6 +15,7 @@ namespace KiPong
         protected AIBat bot;
         protected Ball ball;
         protected Difficulty difficulty;
+        private SoundEffect goalSound;
         private Side lastScored;
 
         public bool Finish {get; set;}
@@ -45,6 +47,8 @@ namespace KiPong
             resetTimerInUse = true;
             decompte = "";
             lastScored = Side.LEFT;
+
+            goalSound = g.Content.Load<SoundEffect>("goal");
 
             // DRAW
             int Wdiv2 = game.ScreenWidth / 2;
@@ -93,6 +97,7 @@ namespace KiPong
                     ball.Reset(lastScored);
                     resetTimer = 0;
                 }
+                return;
             }
             #endregion Timer
 
@@ -125,24 +130,23 @@ namespace KiPong
                 IncreaseSpeed();
             }
 
-            if (!resetTimerInUse)
+            // si la balle sort de l'ecran du cote droit
+            if (ball.GetPosition().X > game.ScreenWidth)
             {
-                // si la balle sort de l'ecran du cote droit
-                if (ball.GetPosition().X > game.ScreenWidth)
-                {
-                    resetTimerInUse = true;
-                    lastScored = Side.LEFT;
-                    playerOne.IncrementPoints();
-                    ball.Stop();
-                }
-                // ou si elle sort du cote gauche
-                else if (ball.GetPosition().X + ball.GetSize().Width < 0)
-                {
-                    resetTimerInUse = true;
-                    lastScored = Side.RIGHT;
-                    (IsOnePlayer ? bot : playerTwo).IncrementPoints();
-                    ball.Stop();
-                }
+                resetTimerInUse = true;
+                lastScored = Side.LEFT;
+                playerOne.IncrementPoints();
+                ball.Stop();
+                goalSound.Play();
+            }
+            // ou si elle sort du cote gauche
+            else if (ball.GetPosition().X + ball.GetSize().Width < 0)
+            {
+                resetTimerInUse = true;
+                lastScored = Side.RIGHT;
+                (IsOnePlayer ? bot : playerTwo).IncrementPoints();
+                ball.Stop();
+                goalSound.Play();
             }
         }
 
