@@ -90,7 +90,7 @@ namespace KiPong
             screenWidth = 1024;
             //screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             //screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            keyboardInput = new KeyboardInput(this);
+            keyboardInput = new KeyboardInput();
             keyboardInput.IsHoldable = false;
             ModeMenu = new MenuKeyboard(this, keyboardInput);
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });

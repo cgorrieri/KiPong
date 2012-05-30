@@ -9,23 +9,31 @@ namespace KiPong
 {
     public abstract class Input
     {
-        protected KiPongGame game;
-
-        public Input(KiPongGame g)
-        {
-            game = g;
-        }
-
+        /// <summary>
+        /// Met à jour l'état des inputs
+        /// </summary>
         public virtual void Update() { }
 
         public virtual void UnloadContent() { }
 
+        /// <summary>
+        /// Obtient si le retour est demandé
+        /// </summary>
         public abstract bool Retour();
 
+        /// <summary>
+        /// Obtient si le joueur valide
+        /// </summary>
         public abstract bool Valider();
 
+        /// <summary>
+        /// Obtient si la pause est demandé
+        /// </summary>
         public abstract bool Pause();
 
+        /// <summary>
+        /// Obtient si l'aide est demandé
+        /// </summary>
         public abstract bool Aide();
     }
 }

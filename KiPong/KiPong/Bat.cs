@@ -8,11 +8,17 @@
     public abstract class Bat : JeuItem
     {
         private int points;
+        /// <summary>
+        /// Obtient les points que le joueur a marqué
+        /// </summary>
         public int Points { get { return points; } }
 
         private int yHeight;
         protected Side side;
 
+        /// <summary>
+        /// L'aipaisseur de la bat
+        /// </summary>
         private const int RatioWidth = 60;
 
         /// <summary>
@@ -37,6 +43,9 @@
             yHeight = game.ScreenHeight;
         }
 
+        /// <summary>
+        /// Obtient le ration à utiliser selon la difficultées
+        /// </summary>
         private int getRatio(Difficulty d)
         {
             switch (d)
@@ -50,6 +59,9 @@
             }
         }
 
+        /// <summary>
+        /// Ajoute un point
+        /// </summary>
         public void IncrementPoints()
         {
             points++;
@@ -72,6 +84,9 @@
             this.position = position;
         }
 
+        /// <summary>
+        /// Réinitialize la bat
+        /// </summary>
         public virtual void Reset()
         {
             setPosition(new Vector2(position.X, yHeight / 2 - size.Height));

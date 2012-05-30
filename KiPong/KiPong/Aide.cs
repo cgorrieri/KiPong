@@ -20,17 +20,15 @@ namespace KiPong
             image = g.Content.Load<Texture2D>(nameImage);
 
             if (image.Height / game.ScreenHeight <= image.Width / game.ScreenWidth)
-            {
                 scale = (float)game.ScreenHeight / (float)image.Height;
-            }
             else
-            {
                 scale = (float)game.ScreenWidth / (float)image.Width;
-            }
-            Console.WriteLine("image " + image.Width * scale + "x" + image.Height*scale);
             text = g.Content.Load<String>(nameText);
         }
 
+        /// <summary>
+        /// Lance la synthèse vocale qui va expliquer l'aide
+        /// </summary>
         public void Speech()
         {
             Utils.SpeechAsynchrone(text);

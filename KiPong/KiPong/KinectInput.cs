@@ -12,6 +12,8 @@ namespace KiPong
 
     public class KinectInput : Input
     {
+        private KiPongGame game;
+
         const int skeletonCount = 2;
         Skeleton[] allSkeletons = new Skeleton[skeletonCount];
         KinectSensor kinectSensor;
@@ -22,31 +24,38 @@ namespace KiPong
         /// </summary>
         private bool lastBack, lastEnter, lastAide;
 
+        /// <summary>
+        /// Si la kinect est connectée
+        /// </summary>
         private bool Ready
         {
             get { return (kinectSensor != null && kinectSensor.Status == KinectStatus.Connected); }
         }
 
+        /// <summary>
+        /// Si un joueur est détecté
+        /// </summary>
         public bool ReadyForOne
-        {
-            get {
-                return (Ready && playerOne != null);
-            }
-        }
+        { get { return (Ready && playerOne != null); } }
 
+        /// <summary>
+        /// Si deux joueur sont détectés
+        /// </summary>
         public bool ReadyForTwo
-        {
-            get
-            {
-                return (ReadyForOne && playerTwo != null);
-            }
-        }
+        { get { return (ReadyForOne && playerTwo != null); } }
 
+        /// <summary>
+        /// Position de la main droite du joueur 1
+        /// </summary>
         public int LeftY { get; set; }
+        /// <summary>
+        /// Position de la main droite du joueur 2
+        /// </summary>
         public int RightY { get; set; }
 
-        public KinectInput(KiPongGame g) : base(g)
+        public KinectInput(KiPongGame g)
         {
+            game = g;
             LeftY = RightY = 0;
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
             DiscoverKinectSensor();

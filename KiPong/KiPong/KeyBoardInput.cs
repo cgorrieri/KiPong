@@ -13,7 +13,7 @@ namespace KiPong
         private KeyboardState lastState;
         public bool IsHoldable { get; set;}
 
-        public KeyboardInput(KiPongGame g) : base(g)
+        public KeyboardInput()
         {
             keyboardState = Keyboard.GetState();
             lastState = keyboardState;
