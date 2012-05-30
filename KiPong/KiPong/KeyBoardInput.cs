@@ -33,7 +33,7 @@ namespace KiPong
                 return keyboardState.IsKeyDown(k) && lastState.IsKeyUp(k); 
         }
 
-        public override bool Retour()
+        public override bool Back()
         {
             return holdable(Keys.Back) || holdable(Keys.Left);
         }
@@ -58,17 +58,17 @@ namespace KiPong
             get { return holdable(Keys.S); }
         }
 
-        public override bool Valider()
+        public override bool Valid()
         {
            return keyboardState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter);
         }
 
-        public override bool Pause()
+        public override bool Break()
         {
             return keyboardState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space);
         }
 
-        public override bool Aide()
+        public override bool Help()
         {
             return keyboardState.IsKeyDown(Keys.F1) && lastState.IsKeyUp(Keys.F1);
         }

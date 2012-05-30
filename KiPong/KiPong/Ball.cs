@@ -8,7 +8,7 @@
     using Microsoft.Xna.Framework.Media;
     using System.Collections.Generic;
 
-    public class Ball : JeuItem
+    public class Ball : PongItem
     {
         /// <summary>
         /// Obtien le centre de la balle

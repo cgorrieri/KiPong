@@ -15,7 +15,7 @@ namespace KiPong
         KeyboardInput input;
 
         public MenuKeyboard(KiPongGame g, KeyboardInput input)
-            : base(g, new Aide(g, "aideMenuKeyboardImg", "aideMenuKeyboardTxt"))
+            : base(g, new Help(g, "aideMenuKeyboardImg", "aideMenuKeyboardTxt"))
         {
             this.input = input;
         }
@@ -34,8 +34,8 @@ namespace KiPong
                     Iterator--;
                 }
 
-                Valid = input.Valider();
-                Back = input.Retour();
+                Valid = input.Valid();
+                Back = input.Back();
             }
         }
     }

@@ -6,19 +6,19 @@ using Microsoft.Xna.Framework;
 
 namespace KiPong
 {
-    public abstract class Aidable : GameObject
+    public abstract class Helpable : GameObject
     {
-        private Aide aide;
+        private Help help;
         /// <summary>
         /// True pour demander l'aide
         /// </summary>
         public bool Help { get; set; }
         protected bool isPrintingHelp;
 
-        public Aidable(KiPongGame g, Aide a)
+        public Helpable(KiPongGame g, Help a)
             : base(g)
         {
-            aide = a;
+            help = a;
         }
 
         public override void Update()
@@ -26,17 +26,17 @@ namespace KiPong
             if (Help && !isPrintingHelp)
             {
                 isPrintingHelp = true;
-                aide.Speech();
+                help.Speech();
             }
             else if (Help && isPrintingHelp)
             {
                 isPrintingHelp = false;
                 Utils.SpeechStop();
-                QuitteAide();
+                LeaveHelp();
             }
         }
 
-        protected virtual void QuitteAide() { }
+        protected virtual void LeaveHelp() { }
 
         public override void Draw()
         {
@@ -44,7 +44,7 @@ namespace KiPong
             if (isPrintingHelp)
             {
                 game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
-                aide.Draw(game.SpriteBatch);
+                help.Draw(game.SpriteBatch);
                 return;
             }
         }

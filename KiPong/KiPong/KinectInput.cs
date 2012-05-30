@@ -195,7 +195,7 @@ namespace KiPong
 
         #endregion
 
-        public override bool Retour()
+        public override bool Back()
         {
             if (ReadyForOne)
             {
@@ -207,7 +207,7 @@ namespace KiPong
             return false;
         }
 
-        public override bool Valider()
+        public override bool Valid()
         {
             if (ReadyForOne)
             {
@@ -220,7 +220,7 @@ namespace KiPong
             return false;
         }
 
-        public override bool Aide()
+        public override bool Help()
         {
             if (ReadyForOne)
             {
@@ -232,17 +232,9 @@ namespace KiPong
             return false;
         }
 
-        public override bool Pause()
+        public override bool Break()
         {
-            return Valider();
-        }
-
-        public bool IsProche(Joint j1, Joint j2, float erreur)
-        {
-            return j1.Position.X + erreur >= j2.Position.X
-                && j1.Position.X - erreur <= j2.Position.X
-                && j1.Position.Y + erreur >= j2.Position.Y
-                && j1.Position.Y - erreur <= j2.Position.Y;
+            return Valid();
         }
     }
 }

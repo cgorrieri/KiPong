@@ -10,15 +10,15 @@ namespace KiPong
     /// <summary>
     /// Le jeu qui est jouable par la kinect
     /// </summary>
-    public class JeuKinect : Jeu
+    public class PongKinect : Pong
     {
         KinectInput input;
 
         private const String PlayerMissing = "Le joueur n'est pas detecte !";
         private const String PlayersMissing = "Le ou les joueurs ne sont pas detectes !";
 
-        public JeuKinect(KiPongGame g, Difficulty d, bool isOp, KinectInput i)
-            : base(g, d, isOp, new Aide(g, "aideJeuKinectImg", "aideJeuKinectTxt"))
+        public PongKinect(KiPongGame g, Difficulty d, bool isOp, KinectInput i)
+            : base(g, d, isOp, new Help(g, "aideJeuKinectImg", "aideJeuKinectTxt"))
         {
             input = i;
             setBats();
@@ -26,11 +26,11 @@ namespace KiPong
 
         protected override void setBats()
         {
-            playerOne = new BatKinect(game, Side.LEFT, difficulty, input);
+            bat1 = new BatKinect(game, Side.LEFT, difficulty, input);
             if (IsOnePlayer)
                 bot = new AIBat(game, Side.RIGHT, difficulty, ball);
             else
-                playerTwo = new BatKinect(game, Side.RIGHT, difficulty, input);
+                bat2 = new BatKinect(game, Side.RIGHT, difficulty, input);
         }
 
         public override void Update()

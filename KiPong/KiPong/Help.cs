@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework;
 
 namespace KiPong
 {
-    public class Aide
+    public class Help
     {
         private Texture2D image;
         private String text;
         private KiPongGame game;
         private float scale;
 
-        public Aide(KiPongGame g, String nameImage, String nameText)
+        public Help(KiPongGame g, String nameImage, String nameText)
         {
             game = g;
             image = g.Content.Load<Texture2D>(nameImage);

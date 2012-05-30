@@ -10,7 +10,7 @@ namespace KiPong
     /// <summary>
     /// Un objet du jeu
     /// </summary>
-    public abstract class JeuItem : GameObject
+    public abstract class PongItem : GameObject
     {
         // La position de l'objet
         protected Vector2 position;
@@ -37,7 +37,7 @@ namespace KiPong
         // Texture a dessiner
         protected Texture2D texture;
 
-        public JeuItem(KiPongGame g)
+        public PongItem(KiPongGame g)
             : base(g)
         {}
     }

@@ -14,7 +14,7 @@ namespace KiPong
     {
         KinectInput input;
         public MenuKinect(KiPongGame g, KinectInput input)
-            : base(g, new Aide(g, "aideMenuKinectImg", "aideMenuKinectTxt"))
+            : base(g, new Help(g, "aideMenuKinectImg", "aideMenuKinectTxt"))
         {
             this.input = input;
         }
@@ -35,8 +35,8 @@ namespace KiPong
                     }
                 }
 
-                Back = input.Retour();
-                Valid = input.Valider();
+                Back = input.Back();
+                Valid = input.Valid();
             }
         }
     }

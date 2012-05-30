@@ -8,12 +8,12 @@ namespace KiPong
     /// <summary>
     /// Le jeu qui est jouable par le clavier
     /// </summary>
-    class JeuKeyboard : Jeu
+    class PongKeyboard : Pong
     {
         KeyboardInput input;
 
-        public JeuKeyboard(KiPongGame g, Difficulty d, bool isOp, KeyboardInput i)
-            : base(g, d, isOp, new Aide(g, "aideJeuKeyboardImg", "aideJeuKeyboardTxt"))
+        public PongKeyboard(KiPongGame g, Difficulty d, bool isOp, KeyboardInput i)
+            : base(g, d, isOp, new Help(g, "aideJeuKeyboardImg", "aideJeuKeyboardTxt"))
         {
             input = i;
             setBats();
@@ -21,19 +21,19 @@ namespace KiPong
 
         protected override void setBats()
         {
-            playerOne = new BatKeyboard(game, Side.LEFT, difficulty, input);
+            bat1 = new BatKeyboard(game, Side.LEFT, difficulty, input);
             if (IsOnePlayer)
                 bot = new AIBat(game, Side.RIGHT, difficulty, ball);
             else
-                playerTwo = new BatKeyboard(game, Side.RIGHT, difficulty, input);
+                bat2 = new BatKeyboard(game, Side.RIGHT, difficulty, input);
         }
 
         protected override void IncreaseSpeed()
         {
             base.IncreaseSpeed();
-            ((BatKeyboard)playerOne).IncreaseSpeed();
+            ((BatKeyboard)bat1).IncreaseSpeed();
             if(!IsOnePlayer)
-                ((BatKeyboard)playerTwo).IncreaseSpeed();
+                ((BatKeyboard)bat2).IncreaseSpeed();
         }
     }
 }

@@ -5,7 +5,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public abstract class Bat : JeuItem
+    public abstract class Bat : PongItem
     {
         private int points;
         /// <summary>

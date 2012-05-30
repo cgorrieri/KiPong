@@ -19,21 +19,21 @@ namespace KiPong
         /// <summary>
         /// Obtient si le retour est demandé
         /// </summary>
-        public abstract bool Retour();
+        public abstract bool Back();
 
         /// <summary>
         /// Obtient si le joueur valide
         /// </summary>
-        public abstract bool Valider();
+        public abstract bool Valid();
 
         /// <summary>
         /// Obtient si la pause est demandé
         /// </summary>
-        public abstract bool Pause();
+        public abstract bool Break();
 
         /// <summary>
         /// Obtient si l'aide est demandé
         /// </summary>
-        public abstract bool Aide();
+        public abstract bool Help();
     }
 }

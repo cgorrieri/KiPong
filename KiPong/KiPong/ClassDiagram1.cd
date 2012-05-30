@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KiPong.AIBat" Collapsed="true">
+    <Position X="14.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AIBat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Aide" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAICEAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Aide.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Ball" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAgAJgAAADAECAECAAASAQEAIgAAAAAIAJA=</HashCode>
+      <FileName>Ball.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Bat" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAAKAAAAAhgAAAIAAAAACAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Bat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.BatKeyboard" Collapsed="true">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAABAAAAAAEAAAAAAACARAAQgAAgAAAAAA=</HashCode>
+      <FileName>BatKeyboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.BatKinect" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>BatKinect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.GameObject" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Input" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgEAIAAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Jeu" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA0AgAABAAAAAhAEAsAhAgAACIAiAgIAQAAACAAoAkA=</HashCode>
+      <FileName>Jeu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.JeuItem" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAgAIAAIAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>JeuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.JeuKeyboard" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAACABAAAAAAAAAAAAA=</HashCode>
+      <FileName>JeuKeyboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.JeuKinect" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAhAAAAAAAAAAAAAAADIQAAAAAAAAAAA=</HashCode>
+      <FileName>JeuKinect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.KeyboardInput" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwwAgIAAAAAAAAAAAAAIAAAAAAAAQAAIAAAoAAJAAA=</HashCode>
+      <FileName>KeyBoardInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.KinectInput" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAggEFIAAAAAQAHQAgAAIAIACAACAQAIAACAAIwAAIU=</HashCode>
+      <FileName>KinectInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.KiPongGame" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AI4AEEAAIEDAQwAAQAIiEAwAACBIAIgASAAAQAECAMQ=</HashCode>
+      <FileName>KiPongGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Menu" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASQCAKBAABAoAlIgQAAQAAAAASAAgCoAAAAABAAAgAA=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.MenuKeyboard" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuKeyboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.MenuKinect" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuKinect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Program" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KiPong.Utils" Collapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAAAAQAAAAAAAAAAAAAAAAAAEEAAACAAABAAAAAAA=</HashCode>
+      <FileName>Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="KiPong.KinectState" Collapsed="true">
+    <Position X="18.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>KinectInput.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="KiPong.Difficulty" Collapsed="true">
+    <Position X="17" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>KiPongGame.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="KiPong.Side" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAgAAABAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>KiPongGame.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

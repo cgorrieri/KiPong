@@ -97,6 +97,7 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -112,19 +113,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIBat.cs" />
-    <Compile Include="Aide.cs" />
+    <Compile Include="Helpable.cs" />
+    <Compile Include="Help.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="Bat.cs" />
     <Compile Include="BatKeyboard.cs" />
     <Compile Include="BatKinect.cs" />
-    <Compile Include="Jeu.cs" />
-    <Compile Include="JeuKeyboard.cs" />
-    <Compile Include="JeuKinect.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="Pong.cs" />
+    <Compile Include="PongItem.cs" />
+    <Compile Include="PongKeyboard.cs" />
+    <Compile Include="PongKinect.cs" />
     <Compile Include="MenuKinect.cs" />
     <Compile Include="MenuKeyboard.cs" />
     <Compile Include="KeyBoardInput.cs" />
     <Compile Include="KinectInput.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="KiPongGame.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,6 +171,9 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

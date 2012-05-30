@@ -19,7 +19,7 @@ namespace KiPong
         /* -- GAME ELEMENT -- */
         public static GameStates gamestate;
         private Menu PlayingMenu, ModeMenu, DifficultyMenu, PauseMenu, EndMenu;
-        private Jeu jeu;
+        private Pong jeu;
         private bool IsOnePlayer, IsKinectMode;
 
         /* -- SCREEN -- */
@@ -137,11 +137,11 @@ namespace KiPong
         {
             if (IsKinectMode)
             {
-                jeu = new JeuKinect(this, d, IsOnePlayer, kinectInput);
+                jeu = new PongKinect(this, d, IsOnePlayer, kinectInput);
             }
             else
             {
-                jeu = new JeuKeyboard(this, d, IsOnePlayer, keyboardInput);
+                jeu = new PongKeyboard(this, d, IsOnePlayer, keyboardInput);
             }
         }
 
@@ -199,7 +199,7 @@ namespace KiPong
             }
 
             // Si le joueur demande de l'aide
-            bool AskHelping = IsKinectMode ? keyboardInput.Aide() || kinectInput.Aide() : keyboardInput.Aide();
+            bool AskHelping = IsKinectMode ? keyboardInput.Help() || kinectInput.Help() : keyboardInput.Help();
             
             #region Playing
             if (gamestate == GameStates.Running)
@@ -214,7 +214,7 @@ namespace KiPong
                     keyboardInput.IsHoldable = false;
                     gamestate = GameStates.EndMenu;
                 }
-                if (!IsKinectMode ? keyboardInput.Pause() : kinectInput.Pause())
+                if (!IsKinectMode ? keyboardInput.Break() : kinectInput.Break())
                 {
                     keyboardInput.IsHoldable = false;
                     gamestate = GameStates.PauseMenu;
@@ -320,7 +320,7 @@ namespace KiPong
                     if (PauseMenu.Iterator == 0)
                     {
                         keyboardInput.IsHoldable = true;
-                        jeu.SetAfterPause();
+                        jeu.SetAfterBreak();
                         gamestate = GameStates.Running;
                     }
                     else if (PauseMenu.Iterator == 1)
@@ -336,7 +336,7 @@ namespace KiPong
                 if (PauseMenu.Back)
                 {
                     keyboardInput.IsHoldable = true;
-                    jeu.SetAfterPause();
+                    jeu.SetAfterBreak();
                     gamestate = GameStates.Running;
                 }
             }

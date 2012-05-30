@@ -10,7 +10,7 @@ namespace KiPong
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public abstract class Menu : Aidable
+    public abstract class Menu : Helpable
     {
         private static Color Gray = new Color(238, 238, 238);
         private static Color DarkGray = new Color(128, 128, 128);
@@ -61,7 +61,7 @@ namespace KiPong
         public bool Valid { get; set; }
         public bool Back { get; set; }
 
-        public Menu(KiPongGame g, Aide a) : base(g, a)
+        public Menu(KiPongGame g, Help a) : base(g, a)
         {
             iterator = lastIterator = 0;
             margin = game.ScreenHeight /60;
@@ -140,7 +140,7 @@ namespace KiPong
             }
         }
 
-        protected override void QuitteAide()
+        protected override void LeaveHelp()
         {
             start = true;
         }
