@@ -10,7 +10,7 @@ namespace KiPong
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public abstract class Menu : GameObject
+    public abstract class Menu : Aidable
     {
         private static Color Gray = new Color(238, 238, 238);
         private static Color DarkGray = new Color(128, 128, 128);
@@ -51,12 +51,6 @@ namespace KiPong
                 }
             }
         }
-        private Aide aide;
-        /// <summary>
-        /// True pour demander l'aide
-        /// </summary>
-        public bool Help { get; set; }
-        protected bool isPrintingHelp;
         // Draw
         private bool isDraw;
         private bool start;
@@ -67,9 +61,8 @@ namespace KiPong
         public bool Valid { get; set; }
         public bool Back { get; set; }
 
-        public Menu(KiPongGame g, Aide a) : base(g)
+        public Menu(KiPongGame g, Aide a) : base(g, a)
         {
-            aide = a;
             iterator = lastIterator = 0;
             margin = game.ScreenHeight /60;
 
@@ -107,28 +100,13 @@ namespace KiPong
                 Iterator=0;
             }
 
-            if (Help && !isPrintingHelp)
-            {
-                isPrintingHelp = true;
-                aide.Speech();
-            }
-            else if (Help && isPrintingHelp)
-            {
-                isPrintingHelp = false;
-                Utils.SpeechStop();
-                start = true;
-            }
+            base.Update();
         }
 
         public override void Draw()
         {
-            // On dessine l'aide si elle est demandé
-            if (isPrintingHelp)
-            {
-                game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
-                aide.Draw(game.SpriteBatch);
-                return;
-            }
+            base.Draw();
+            if (isPrintingHelp) return;
 
             game.SpriteBatch.GraphicsDevice.Clear(Gray);
 
@@ -160,6 +138,11 @@ namespace KiPong
                     rectItem.Y += rectItem.Height + margin;
                 }
             }
+        }
+
+        protected override void QuitteAide()
+        {
+            start = true;
         }
     }
 }

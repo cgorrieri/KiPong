@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KiPong
 {
-    public abstract class Jeu : GameObject
+    public abstract class Jeu : Aidable
     {
         protected Bat playerOne, playerTwo;
         protected AIBat bot;
@@ -41,8 +41,8 @@ namespace KiPong
         private const String PlayerOneWin = "Le joueur 1 gagne !";
         private const String PlayerTwoWin = "Le joueur 2 gagne !";
 
-        public Jeu(KiPongGame g, Difficulty d, bool isOnePlayer)
-            : base(g)
+        public Jeu(KiPongGame g, Difficulty d, bool isOnePlayer, Aide aide)
+            : base(g, aide)
         {
             IsOnePlayer = isOnePlayer;
             difficulty = d;
@@ -76,6 +76,9 @@ namespace KiPong
 
         public override void Update()
         {
+            base.Update();
+            if (isPrintingHelp) return;
+
             #region Timer
             if (afterPauseTimer > 0)
             {
@@ -214,6 +217,9 @@ namespace KiPong
 
         public override void Draw()
         {
+            base.Draw();
+            if (isPrintingHelp) return;
+
             game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
             Bat secondBat = IsOnePlayer ? bot : playerTwo;
             // Points et ligne
@@ -227,6 +233,11 @@ namespace KiPong
             // Timer si activé
             if (resetTimerInUse)
                 Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, game.ScreenSize, decompte, Color.White);
+        }
+
+        protected override void QuitteAide()
+        {
+            SetAfterPause();
         }
     }
 }

@@ -204,7 +204,9 @@ namespace KiPong
             #region Playing
             if (gamestate == GameStates.Running)
             {
+                jeu.Help = AskHelping;
                 jeu.Update();
+
                 if (jeu.IsFinish)
                 {
                     EndMenu.Description = jeu.getMessage();

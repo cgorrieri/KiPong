@@ -13,7 +13,7 @@ namespace KiPong
         KeyboardInput input;
 
         public JeuKeyboard(KiPongGame g, Difficulty d, bool isOp, KeyboardInput i)
-            : base(g, d, isOp)
+            : base(g, d, isOp, new Aide(g, "aideJeuKeyboardImg", "aideJeuKeyboardTxt"))
         {
             input = i;
             setBats();
