@@ -6,11 +6,13 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Media;
+    using System.Collections.Generic;
 
     public class Ball
     {
         private bool isVisible;
-        private Vector2 position, resetPos;
+        //private Vector2 position;
+        private Vector2 resetPos;
         private double direction;
         private Texture2D texture;
         private Rectangle size;
@@ -18,6 +20,11 @@
         private Random rand;
         private SoundEffect WallHitSong, BatHitSong;
         private Game1 game;
+
+        private int maxSizeListePosition;
+
+        //Liste de position
+        List<Vector2> positions;
 
         public Ball(Game1 g, Difficulty d)
         {
@@ -29,7 +36,17 @@
             scale = (float) width / (float) texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
-            position = resetPos;
+            //position = resetPos;
+
+            maxSizeListePosition = 5;
+            positions = new List<Vector2>(maxSizeListePosition);
+            positions.Add(resetPos);
+            positions.Add(resetPos);
+            positions.Add(resetPos);
+            positions.Add(resetPos);
+            positions.Add(resetPos);
+            positions.Add(resetPos);
+
             direction = 0;
             rand = new Random();
             isVisible = false;
@@ -61,8 +78,8 @@
         {
             while (direction > 2 * Math.PI) direction -= 2 * Math.PI;
             while (direction < 0) direction += 2 * Math.PI;
-            if ((position.Y <= 0 && direction > Math.PI) || 
-                (position.Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
+            if ((positions[0].Y <= 0 && direction > Math.PI) || 
+                (positions[0].Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
             {
                 direction = 2 * Math.PI - direction;
                 WallHitSong.Play();
@@ -92,19 +109,19 @@
 
         public Vector2 GetPosition()
         {
-            return position;
+            return positions[0];
         }
 
         public Vector2 GetCenter()
         {
-            return new Vector2(position.X + size.Width / 2, position.Y + size.Height / 2);
+            return new Vector2(positions[0].X + size.Width / 2, positions[0].Y + size.Height / 2);
         }
 
         public void Reset(Side side)
         {
             if (side == Side.LEFT) direction = 0;
             else direction = Math.PI;
-            position = resetPos;
+            positions[0] = resetPos;
             isVisible = true;
             speed = baseSpeed;
             if (rand.Next(2) == 0)
@@ -207,10 +224,18 @@
         /// </summary>
         public void Update()
         {
-            size.X = (int)position.X;
-            size.Y = (int)position.Y;
-            position.X += speed * (float)Math.Cos(direction);
-            position.Y += speed * (float)Math.Sin(direction);
+            size.X = (int)positions[0].X;
+            size.Y = (int)positions[0].Y;
+
+            Vector2 vector = positions[0];
+
+            for (int i = maxSizeListePosition; i > 0; i--)
+                positions[i] = positions[i - 1];
+
+            vector.X += speed * (float)Math.Cos(direction);
+            vector.Y += speed * (float)Math.Sin(direction);
+            positions[0] = vector;
+
             CheckWallHit();
         }
 
@@ -222,7 +247,15 @@
         {
             if (isVisible)
             {
-                batch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                int value = 50;
+              
+                for (int i = maxSizeListePosition; i > 0; i--)
+                {
+                    batch.Draw(texture, positions[i], null, new Color(value, value, value, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    value += 25;
+                }
+
+                batch.Draw(texture, positions[0], null, new Color(255, 255, 255, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
         }
     }
