@@ -84,7 +84,7 @@ namespace KiPong
             if (start && isDraw)
             {
                 Utils.SpeechStop();
-                Utils.SpeechSynchrone(Description);
+                //Utils.SpeechSynchrone(Description);
                 lastIterator = -1;
                 start = false;
                 Iterator=0;
