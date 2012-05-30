@@ -1,10 +1,5 @@
 # TODO
 
-## Son
-### Trouver son pour
-* Changement et validation d'item dans le menu
-* Quand un joueur marque un point
-
 ## Faire SplashScreen
 
 ## Dll
