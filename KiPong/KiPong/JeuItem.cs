@@ -7,12 +7,23 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KiPong
 {
+    /// <summary>
+    /// Un objet du jeu
+    /// </summary>
     public abstract class JeuItem : GameObject
     {
+        // La position de l'objet
         protected Vector2 position;
+        /// <summary>
+        /// Obtient la position de l'objet
+        /// </summary>
         public Vector2 Position { get { return position; } }
 
+        // Taille a prendre en compte pour l'objet
         protected Rectangle size;
+        /// <summary>
+        /// Obtient la taille de l'objet
+        /// </summary>
         public Rectangle Size
         {
             get
@@ -23,12 +34,11 @@ namespace KiPong
             }
         }
 
+        // Texture a dessiner
         protected Texture2D texture;
 
         public JeuItem(KiPongGame g)
             : base(g)
-        {
-
-        }
+        {}
     }
 }

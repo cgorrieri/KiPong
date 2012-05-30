@@ -18,9 +18,18 @@ namespace KiPong
         private static float ratioTitle = 5f / 16f;
 
         // Menu
+        /// <summary>
+        /// Obtient ou modifi le titre du menu
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Obtient ou modifi la description du menu qui sera dite par la synthèse vocale
+        /// </summary>
         public string Description { get; set; }
         private List<string> menuItems;
+        /// <summary>
+        /// Obtient ou modifi la liste des items
+        /// </summary>
         public List<string> MenuItems
         {
             get { return menuItems; }
@@ -43,6 +52,9 @@ namespace KiPong
             }
         }
         private Aide aide;
+        /// <summary>
+        /// True pour demander l'aide
+        /// </summary>
         public bool Help { get; set; }
         protected bool isPrintingHelp;
         // Draw
@@ -61,6 +73,7 @@ namespace KiPong
             iterator = lastIterator = 0;
             margin = game.ScreenHeight /60;
 
+            // Dessine les rectangles du font du menu
             int width = game.ScreenWidth - 2 * margin;
             bordTitle = new Rectangle(margin, margin, width, (int)(game.ScreenHeight * ratioTitle));
             int margin2 = margin * 2;
@@ -68,6 +81,9 @@ namespace KiPong
             rectItems = new Rectangle(margin, bordTitle.Height + 2 * margin, width, game.ScreenHeight - bordTitle.Height - 3 * margin);
         }
 
+        /// <summary>
+        /// Créer le rectangle d'un item
+        /// </summary>
         private void SetItems()
         {
             int width = rectItems.Width - 2 * margin;
@@ -75,6 +91,9 @@ namespace KiPong
             rectItem = new Rectangle(margin*2, 0, width, height);
         }
 
+        /// <summary>
+        /// Lance la sythèse vocale qui va dire la description
+        /// </summary>
         public void StartDescription() { start = true; }
 
         public override void Update()
@@ -103,7 +122,7 @@ namespace KiPong
 
         public override void Draw()
         {
-            // Aide
+            // On dessine l'aide si elle est demandé
             if (isPrintingHelp)
             {
                 game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
@@ -114,15 +133,13 @@ namespace KiPong
             game.SpriteBatch.GraphicsDevice.Clear(Gray);
 
             isDraw = start;
-
+            // On dessine le titre
             Utils.DrawRectangle(game.SpriteBatch, bordTitle, DarkGray);
             Utils.DrawRectangle(game.SpriteBatch, rectTitle, Gray);
             Utils.DrawStringAtCenter(game.SpriteBatch, game.FontTitle, rectTitle, Title, Blue);
-
+            // On dessine les items
             Utils.DrawRectangle(game.SpriteBatch, rectItems, Color.Black);
-
             rectItem.Y = rectItems.Y + margin;
-
             if (menuItems != null)
             {
                 Color back, font;

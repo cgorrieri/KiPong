@@ -1,18 +1,18 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.Kinect;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 namespace KiPong
 {
-    using System;
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
-    using Microsoft.Kinect;
-    using System.Collections.Generic;
-
     public enum Difficulty { EASY, MEDIUM, HARD };
 
     public enum Side { LEFT, RIGHT, TOP, BOTTOM };
 
     /// <summary>
-    /// Menu Principale
+    /// Je jeu principale qui contient les menus et le jeu
     /// </summary>
     public class KiPongGame : Game
     {
@@ -26,21 +26,43 @@ namespace KiPong
         private KinectInput kinectInput;
         private KeyboardInput keyboardInput;
         private int screenWidth;
+        /// <summary>
+        /// Obtient la longueur de l'écran
+        /// </summary>
         public int ScreenWidth { get { return screenWidth; } }
         private int screenHeight;
+        /// <summary>
+        /// Obtient la hauteur de l'écran
+        /// </summary>
         public int ScreenHeight { get { return screenHeight; } }
         private Rectangle screen;
+        /// <summary>
+        /// Obtient la taille de l'écran
+        /// </summary>
+        public Rectangle ScreenSize { get { return screen; } }
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        /// <summary>
+        /// Obtient l'outil de dessin du jeu
+        /// </summary>
         public SpriteBatch SpriteBatch { get { return spriteBatch; } }
         private SpriteFont font, fontTitle;
+        /// <summary>
+        /// Obtient la font du jeu
+        /// </summary>
         public SpriteFont Font { get { return font; } }
+        /// <summary>
+        /// Obtient la font pour les titres du jeu
+        /// </summary>
         public SpriteFont FontTitle { get { return fontTitle; } }
 
         /* -- SPLASH SCREEN -- */
         private Texture2D splashScreen;
         private TimeSpan splashScreenTimer;
 
+        /// <summary>
+        /// Les différents états du jeu
+        /// </summary>
         public enum GameStates
         {
             SplashScreen,
@@ -59,10 +81,7 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// Initialise les éléments du jeu
         /// </summary>
         protected override void Initialize()
         {
@@ -89,8 +108,7 @@ namespace KiPong
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// Charge les éléments du jeu
         /// </summary>
         protected override void LoadContent()
         {
@@ -102,8 +120,7 @@ namespace KiPong
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
+        /// Supprime les éléments du jeu de la mémoire
         /// </summary>
         protected override void UnloadContent()
         {
@@ -129,7 +146,7 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Creer les menus
+        /// Créer les menus
         /// </summary>
         private void SetMenus()
         {
@@ -188,7 +205,7 @@ namespace KiPong
             if (gamestate == GameStates.Running)
             {
                 jeu.Update();
-                if (jeu.Finish)
+                if (jeu.IsFinish)
                 {
                     EndMenu.Description = jeu.getMessage();
                     EndMenu.StartDescription();
@@ -359,9 +376,9 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Méthode appeler régulièrement par le système de jeu
+        /// Méthode appeler régulièrement par le système de jeu pour dessiner à l'écran
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -398,12 +415,5 @@ namespace KiPong
 
             base.Draw(gameTime);
         }
-
-        #region Helpers
-        public void DrawStringAtCenter(String text, Color color)
-        {
-            Utils.DrawStringAtCenter(spriteBatch, font, screen, text, color);
-        }
-        #endregion Helpers
     }
 }

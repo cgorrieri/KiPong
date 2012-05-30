@@ -13,6 +13,7 @@ namespace KiPong
     public class MenuKeyboard : Menu
     {
         KeyboardInput input;
+
         public MenuKeyboard(KiPongGame g, KeyboardInput input)
             : base(g, new Aide(g, "aideMenuKeyboardImg", "aideMenuKeyboardTxt"))
         {

@@ -10,41 +10,63 @@
 
     public class Ball : JeuItem
     {
+        /// <summary>
+        /// Obtien le centre de la balle
+        /// </summary>
+        public Vector2 Center
+        {
+            get { return new Vector2(position.X + size.Width / 2, position.Y + size.Height / 2); }
+        }
+        // Si la balle est visible ou non
         private bool isVisible;
+        // La position de départ de la balle
         private Vector2 resetPos;
+        // Direction de la balle
         private double direction;
+        /// <summary>
+        /// Obtien la direction de la balle
+        /// </summary>
+        public double Direction
+        {
+            get { return direction; }
+        }
+        // Vitesse de la balle
         private float speed, baseSpeed, increaseSpeed, scale;
         private Random rand;
+        // Différents son que la balle fait
         private SoundEffect WallHitSong, BatHitSong;
-
+        // Liste de positions de la trainée
         private int maxSizeListePosition;
-
-        //Liste de position
-        List<Vector2> positions;
+        List<Vector2> traineePosition;
 
         public Ball(KiPongGame g, Difficulty d)
             : base(g)
         {
             // creer la balle
             setSpeed(d);
-            game = g;
+            direction = 0;
             int width = g.ScreenWidth / 30;
             texture = g.Content.Load<Texture2D>("balle");
             scale = (float)width / (float)texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
 
+            // Création de la trainée
             position = resetPos;
             maxSizeListePosition = 4;
-            positions = new List<Vector2>(maxSizeListePosition) { resetPos, resetPos, resetPos, resetPos};
+            traineePosition = new List<Vector2>(maxSizeListePosition) { resetPos, resetPos, resetPos, resetPos};
 
-            direction = 0;
+            // Initialisation des autres composants
             rand = new Random();
             isVisible = false;
             WallHitSong = g.Content.Load<SoundEffect>("WallHit");
             BatHitSong = g.Content.Load<SoundEffect>("BatHit");
         }
 
+        /// <summary>
+        /// Met en place la vitesse et l'augmentation de vitesse en fonction de la difficultée
+        /// </summary>
+        /// <param name="d">Difficultée du jeu</param>
         private void setSpeed(Difficulty d)
         {
             switch (d)
@@ -65,6 +87,9 @@
             speed = baseSpeed;
         }
 
+        /// <summary>
+        /// Regarde si la balle tape un mur, si oui elle change de direction
+        /// </summary>
         private void CheckWallHit()
         {
             while (direction > 2 * Math.PI) direction -= 2 * Math.PI;
@@ -77,27 +102,27 @@
             }
         }
 
-        public double GetDirection()
-        {
-            return direction;
-        }
-
+        /// <summary>
+        /// Arète la balle et la rend invisible
+        /// </summary>
         public void Stop()
         {
             isVisible = false;
             speed = 0;
         }
 
+        /// <summary>
+        /// Augmente la vitesse de la balle
+        /// </summary>
         public void IncreaseSpeed()
         {
             speed += increaseSpeed;
         }
 
-        public Vector2 GetCenter()
-        {
-            return new Vector2(position.X + size.Width / 2, position.Y + size.Height / 2);
-        }
-
+        /// <summary>
+        /// Remet la balle au centre de l'écran et réinitialise sa vitesse
+        /// </summary>
+        /// <param name="side">Le coté qui a marqué le point</param>
         public void Reset(Side side)
         {
             if (side == Side.LEFT) direction = 0;
@@ -115,6 +140,10 @@
             }
         }
 
+        /// <summary>
+        /// Change la direction de la balle quand elle touche une batte
+        /// </summary>
+        /// <param name="block">Le block de la batte sur lequel la balle a tapée</param>
         public void BatHit(int block)
         {
             if (direction > Math.PI * 1.5f || direction < Math.PI * 0.5f)
@@ -203,12 +232,12 @@
         public override void Update()
         {            
             for (int i = maxSizeListePosition - 1; i > 0; i--)
-                positions[i] = positions[i - 1];
+                traineePosition[i] = traineePosition[i - 1];
 
             position.X += speed * (float)Math.Cos(direction);
             position.Y += speed * (float)Math.Sin(direction);
 
-            positions[0] = position;
+            traineePosition[0] = position;
             
             CheckWallHit();
         }
@@ -217,14 +246,15 @@
         {
             if (isVisible)
             {
+                // Valeur de fin du alpha
                 int value = 50;
-              
+                // On dessine la trainée
                 for (int i = maxSizeListePosition-1; i >= 0; i--)
                 {
-                    game.SpriteBatch.Draw(texture, positions[i], null, new Color(value, value, value, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    game.SpriteBatch.Draw(texture, traineePosition[i], null, new Color(value, value, value, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                     value += 25;
                 }
-
+                // On dessine la balle
                 game.SpriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
         }

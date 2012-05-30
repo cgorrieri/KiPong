@@ -17,7 +17,11 @@ namespace KiPong
         private SoundEffect goalSound;
         private Side lastScored;
 
-        public bool Finish {get; set;}
+        private bool finish;
+        /// <summary>
+        /// Retourne si le jeu est fini 
+        /// </summary>
+        public bool IsFinish { get { return finish; } }
         public bool IsOnePlayer;
 
         /* DRAW */
@@ -40,7 +44,6 @@ namespace KiPong
         public Jeu(KiPongGame g, Difficulty d, bool isOnePlayer)
             : base(g)
         {
-            game = g;
             IsOnePlayer = isOnePlayer;
             difficulty = d;
             ball = new Ball(game, d);
@@ -58,6 +61,9 @@ namespace KiPong
             line = new Rectangle(Wdiv2 - 5, 0, 10, game.ScreenHeight);
         }
 
+        /// <summary>
+        /// Créer les bats
+        /// </summary>
         protected abstract void setBats();
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace KiPong
                 || IsOnePlayer && bot.Points > 5
                 || !IsOnePlayer && playerTwo.Points > 5)
             {
-                Finish = true;
+                finish = true;
             }
 
             playerOne.Update();
@@ -113,7 +119,7 @@ namespace KiPong
             if (!resetTimerInUse)
             {
                 // si la balle se dirige vers la droite
-                if (ball.GetDirection() > 1.5f * Math.PI || ball.GetDirection() < 0.5f * Math.PI)
+                if (ball.Direction > 1.5f * Math.PI || ball.Direction < 0.5f * Math.PI)
                 {
                     // si la balle est sur la bat droite
                     Bat bat = IsOnePlayer ? bot : playerTwo;
@@ -154,11 +160,11 @@ namespace KiPong
         /// Récupère le block de la bat sur lequelle la ball tape
         /// </summary>
         /// <param name="bat">La Bat où il y a collision</param>
-        /// <returns></returns>
+        /// <returns>Le block sur lequel la balle a tapée</returns>
         private int CheckHitLocation(Bat bat)
         {
             int block = 0;
-            float y = ball.GetCenter().Y;
+            float y = ball.Center.Y;
             if (y < bat.Position.Y + bat.Size.Height / 20) block = 1;
             else if (y < bat.Position.Y + bat.Size.Height / 10 * 2) block = 2;
             else if (y < bat.Position.Y + bat.Size.Height / 10 * 3) block = 3;
@@ -183,12 +189,12 @@ namespace KiPong
         }
 
         /// <summary>
-        /// Donne le message correspondant à l'état de la fin du jeu
+        /// Retourne le message correspondant à l'état de la fin du jeu
         /// </summary>
-        /// <returns>L'état si le jeu est fini sinon vide</returns>
+        /// <returns>L'état si le jeu est fini, sinon vide</returns>
         public String getMessage()
         {
-            if (Finish)
+            if (finish)
             {
                 if (playerOne.Points > 5)
                 {
@@ -220,7 +226,7 @@ namespace KiPong
             ball.Draw();
             // Timer si activé
             if (resetTimerInUse)
-                game.DrawStringAtCenter(decompte, Color.White);
+                Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, game.ScreenSize, decompte, Color.White);
         }
     }
 }

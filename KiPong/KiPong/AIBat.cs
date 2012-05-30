@@ -6,6 +6,7 @@
 
     public class AIBat : BatKeyboard
     {
+        // La balle que le bot doit suivre
         private Ball ball;
 
         public AIBat(KiPongGame game, Side side, Difficulty d, Ball b) : base(game, side, d, null)
@@ -15,7 +16,7 @@
 
         public override void Update()
         {
-            if (ball.GetDirection() > 1.5 * Math.PI || ball.GetDirection() < 0.5 * Math.PI)
+            if (ball.Direction > 1.5 * Math.PI || ball.Direction < 0.5 * Math.PI)
             {
                 if (ball.Position.Y - 5 > Position.Y + Size.Height / 2)
                 {

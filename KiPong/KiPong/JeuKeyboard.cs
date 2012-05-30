@@ -5,6 +5,9 @@ using System.Text;
 
 namespace KiPong
 {
+    /// <summary>
+    /// Le jeu qui est jouable par le clavier
+    /// </summary>
     class JeuKeyboard : Jeu
     {
         KeyboardInput input;

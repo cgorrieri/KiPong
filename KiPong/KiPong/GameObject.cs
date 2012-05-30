@@ -10,12 +10,15 @@ namespace KiPong
     /// </summary>
     public abstract class GameObject
     {
+        /// <summary>
+        /// Le jeu à qui appertient cet objet
+        /// </summary>
         protected KiPongGame game;
 
         /// <summary>
         /// Construit un objet de jeu
         /// </summary>
-        /// <param name="g">Le jeu à qui appertient cette objet</param>
+        /// <param name="g">Le jeu à qui appertient cet objet</param>
         public GameObject(KiPongGame g)
         {
             game = g;
