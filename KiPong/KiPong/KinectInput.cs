@@ -45,7 +45,7 @@ namespace KiPong
         public int LeftY { get; set; }
         public int RightY { get; set; }
 
-        public KinectInput(Game1 g) : base(g)
+        public KinectInput(KiPongGame g) : base(g)
         {
             LeftY = RightY = 0;
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);

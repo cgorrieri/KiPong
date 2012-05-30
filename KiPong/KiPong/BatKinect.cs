@@ -15,7 +15,7 @@ namespace KiPong
         /// </summary>
         /// <param name="game">Le jeu propriétaire</param>
         /// <param name="side">Si true alors à gauche sinon à droite de l'écran</param>
-        public BatKinect(Game1 game, Side side, Difficulty d, KinectInput i)
+        public BatKinect(KiPongGame game, Side side, Difficulty d, KinectInput i)
             : base(game, side, d)
         {
             input = i;
@@ -24,9 +24,9 @@ namespace KiPong
         public override void Update()
         {
             if (side == Side.LEFT)
-                SetPosition(new Vector2(position.X, input.LeftY));
+                setPosition(new Vector2(position.X, input.LeftY));
             else
-                SetPosition(new Vector2(position.X, input.LeftY));
+                setPosition(new Vector2(position.X, input.LeftY));
         }
     }
 }

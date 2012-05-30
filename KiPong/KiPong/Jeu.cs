@@ -8,9 +8,8 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KiPong
 {
-    public abstract class Jeu
+    public abstract class Jeu : GameObject
     {
-        protected Game1 game;
         protected Bat playerOne, playerTwo;
         protected AIBat bot;
         protected Ball ball;
@@ -38,7 +37,9 @@ namespace KiPong
         private const String PlayerOneWin = "Le joueur 1 gagne !";
         private const String PlayerTwoWin = "Le joueur 2 gagne !";
 
-        public Jeu(Game1 g, Difficulty d, bool isOnePlayer) {
+        public Jeu(KiPongGame g, Difficulty d, bool isOnePlayer)
+            : base(g)
+        {
             game = g;
             IsOnePlayer = isOnePlayer;
             difficulty = d;
@@ -67,10 +68,7 @@ namespace KiPong
             afterPauseTimer = 50;
         }
 
-        /// <summary>
-        /// Met à jour l'état du jeu
-        /// </summary>
-        public void Update()
+        public override void Update()
         {
             #region Timer
             if (afterPauseTimer > 0)
@@ -97,13 +95,12 @@ namespace KiPong
                     ball.Reset(lastScored);
                     resetTimer = 0;
                 }
-                return;
             }
             #endregion Timer
 
-            if (playerOne.GetPoints() > 5 
-                || IsOnePlayer && bot.GetPoints() > 5
-                || !IsOnePlayer && playerTwo.GetPoints() > 5)
+            if (playerOne.Points > 5 
+                || IsOnePlayer && bot.Points > 5
+                || !IsOnePlayer && playerTwo.Points > 5)
             {
                 Finish = true;
             }
@@ -113,40 +110,43 @@ namespace KiPong
 
             ball.Update();
 
-            // si la balle se dirige vers la droite
-            if (ball.GetDirection() > 1.5f * Math.PI || ball.GetDirection() < 0.5f * Math.PI)
+            if (!resetTimerInUse)
             {
-                // si la balle est sur la bat droite
-                Bat bat = IsOnePlayer ? bot : playerTwo;
-                if (bat.GetSize().Intersects(ball.GetSize()))
+                // si la balle se dirige vers la droite
+                if (ball.GetDirection() > 1.5f * Math.PI || ball.GetDirection() < 0.5f * Math.PI)
                 {
-                    ball.BatHit(CheckHitLocation(bat));
+                    // si la balle est sur la bat droite
+                    Bat bat = IsOnePlayer ? bot : playerTwo;
+                    if (bat.Size.Intersects(ball.Size))
+                    {
+                        ball.BatHit(CheckHitLocation(bat));
+                        IncreaseSpeed();
+                    }
+                } // sinon est ce que elle est sur la batte gauche
+                else if (playerOne.Size.Intersects(ball.Size))
+                {
+                    ball.BatHit(CheckHitLocation(playerOne));
                     IncreaseSpeed();
                 }
-            } // sinon est ce que elle est sur la batte gauche
-            else if (playerOne.GetSize().Intersects(ball.GetSize()))
-            {
-                ball.BatHit(CheckHitLocation(playerOne));
-                IncreaseSpeed();
-            }
 
-            // si la balle sort de l'ecran du cote droit
-            if (ball.GetPosition().X > game.ScreenWidth)
-            {
-                resetTimerInUse = true;
-                lastScored = Side.LEFT;
-                playerOne.IncrementPoints();
-                ball.Stop();
-                goalSound.Play();
-            }
-            // ou si elle sort du cote gauche
-            else if (ball.GetPosition().X + ball.GetSize().Width < 0)
-            {
-                resetTimerInUse = true;
-                lastScored = Side.RIGHT;
-                (IsOnePlayer ? bot : playerTwo).IncrementPoints();
-                ball.Stop();
-                goalSound.Play();
+                // si la balle sort de l'ecran du cote droit
+                if (ball.Position.X > game.ScreenWidth)
+                {
+                    resetTimerInUse = true;
+                    lastScored = Side.LEFT;
+                    playerOne.IncrementPoints();
+                    ball.Stop();
+                    goalSound.Play();
+                }
+                // ou si elle sort du cote gauche
+                else if (ball.Position.X + ball.Size.Width < 0)
+                {
+                    resetTimerInUse = true;
+                    lastScored = Side.RIGHT;
+                    (IsOnePlayer ? bot : playerTwo).IncrementPoints();
+                    ball.Stop();
+                    goalSound.Play();
+                }
             }
         }
 
@@ -159,15 +159,15 @@ namespace KiPong
         {
             int block = 0;
             float y = ball.GetCenter().Y;
-            if (y < bat.GetPosition().Y + bat.GetSize().Height / 20) block = 1;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 2) block = 2;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 3) block = 3;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 4) block = 4;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 5) block = 5;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 6) block = 6;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 7) block = 7;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 10 * 8) block = 8;
-            else if (y < bat.GetPosition().Y + bat.GetSize().Height / 20 * 19) block = 9;
+            if (y < bat.Position.Y + bat.Size.Height / 20) block = 1;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 2) block = 2;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 3) block = 3;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 4) block = 4;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 5) block = 5;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 6) block = 6;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 7) block = 7;
+            else if (y < bat.Position.Y + bat.Size.Height / 10 * 8) block = 8;
+            else if (y < bat.Position.Y + bat.Size.Height / 20 * 19) block = 9;
             else block = 10;
             return block;
         }
@@ -190,15 +190,15 @@ namespace KiPong
         {
             if (Finish)
             {
-                if (playerOne.GetPoints() > 5)
+                if (playerOne.Points > 5)
                 {
                     return IsOnePlayer ? YouWin : PlayerOneWin;
                 }
-                else if (IsOnePlayer && bot.GetPoints() > 5)
+                else if (IsOnePlayer && bot.Points > 5)
                 {
                     return BotWin;
                 }
-                else if (!IsOnePlayer && playerTwo.GetPoints() > 5)
+                else if (!IsOnePlayer && playerTwo.Points > 5)
                 {
                     return PlayerTwoWin;
                 }
@@ -206,21 +206,18 @@ namespace KiPong
             return "";
         }
 
-        /// <summary>
-        /// Dessine le jeu
-        /// </summary>
-        public virtual void Draw()
+        public override void Draw()
         {
             game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
             Bat secondBat = IsOnePlayer ? bot : playerTwo;
             // Points et ligne
-            game.SpriteBatch.DrawString(game.FontTitle, playerOne.GetPoints().ToString(), posPointsJ1, Color.White);
-            game.SpriteBatch.DrawString(game.FontTitle, secondBat.GetPoints().ToString(), posPointsJ2, Color.White);
+            game.SpriteBatch.DrawString(game.FontTitle, playerOne.Points.ToString(), posPointsJ1, Color.White);
+            game.SpriteBatch.DrawString(game.FontTitle, secondBat.Points.ToString(), posPointsJ2, Color.White);
             Utils.DrawRectangle(game.SpriteBatch, line, Color.Gray);
             // Bats et ball
-            playerOne.Draw(game.SpriteBatch);
-            secondBat.Draw(game.SpriteBatch);
-            ball.Draw(game.SpriteBatch);
+            playerOne.Draw();
+            secondBat.Draw();
+            ball.Draw();
             // Timer si activé
             if (resetTimerInUse)
                 game.DrawStringAtCenter(decompte, Color.White);

@@ -8,44 +8,35 @@
     using Microsoft.Xna.Framework.Media;
     using System.Collections.Generic;
 
-    public class Ball
+    public class Ball : JeuItem
     {
         private bool isVisible;
-        //private Vector2 position;
         private Vector2 resetPos;
         private double direction;
-        private Texture2D texture;
-        private Rectangle size;
         private float speed, baseSpeed, increaseSpeed, scale;
         private Random rand;
         private SoundEffect WallHitSong, BatHitSong;
-        private Game1 game;
 
         private int maxSizeListePosition;
 
         //Liste de position
         List<Vector2> positions;
 
-        public Ball(Game1 g, Difficulty d)
+        public Ball(KiPongGame g, Difficulty d)
+            : base(g)
         {
             // creer la balle
             setSpeed(d);
             game = g;
             int width = g.ScreenWidth / 30;
             texture = g.Content.Load<Texture2D>("balle");
-            scale = (float) width / (float) texture.Width;
+            scale = (float)width / (float)texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
-            //position = resetPos;
 
-            maxSizeListePosition = 5;
-            positions = new List<Vector2>(maxSizeListePosition);
-            positions.Add(resetPos);
-            positions.Add(resetPos);
-            positions.Add(resetPos);
-            positions.Add(resetPos);
-            positions.Add(resetPos);
-            positions.Add(resetPos);
+            position = resetPos;
+            maxSizeListePosition = 4;
+            positions = new List<Vector2>(maxSizeListePosition) { resetPos, resetPos, resetPos, resetPos};
 
             direction = 0;
             rand = new Random();
@@ -78,17 +69,12 @@
         {
             while (direction > 2 * Math.PI) direction -= 2 * Math.PI;
             while (direction < 0) direction += 2 * Math.PI;
-            if ((positions[0].Y <= 0 && direction > Math.PI) || 
-                (positions[0].Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
+            if ((position.Y <= 0 && direction > Math.PI) || 
+                (position.Y >= (game.ScreenHeight - size.Height) && direction < Math.PI) )
             {
                 direction = 2 * Math.PI - direction;
                 WallHitSong.Play();
             }
-        }
-
-        public Rectangle GetSize()
-        {
-            return size;
         }
 
         public double GetDirection()
@@ -107,21 +93,16 @@
             speed += increaseSpeed;
         }
 
-        public Vector2 GetPosition()
-        {
-            return positions[0];
-        }
-
         public Vector2 GetCenter()
         {
-            return new Vector2(positions[0].X + size.Width / 2, positions[0].Y + size.Height / 2);
+            return new Vector2(position.X + size.Width / 2, position.Y + size.Height / 2);
         }
 
         public void Reset(Side side)
         {
             if (side == Side.LEFT) direction = 0;
             else direction = Math.PI;
-            positions[0] = resetPos;
+            position = resetPos;
             isVisible = true;
             speed = baseSpeed;
             if (rand.Next(2) == 0)
@@ -219,43 +200,32 @@
             BatHitSong.Play();
         }
 
-        /// <summary>
-        /// Met à jour la position de la balle par rapport à sa vitesse
-        /// </summary>
-        public void Update()
-        {
-            size.X = (int)positions[0].X;
-            size.Y = (int)positions[0].Y;
-
-            Vector2 vector = positions[0];
-
-            for (int i = maxSizeListePosition; i > 0; i--)
+        public override void Update()
+        {            
+            for (int i = maxSizeListePosition - 1; i > 0; i--)
                 positions[i] = positions[i - 1];
 
-            vector.X += speed * (float)Math.Cos(direction);
-            vector.Y += speed * (float)Math.Sin(direction);
-            positions[0] = vector;
+            position.X += speed * (float)Math.Cos(direction);
+            position.Y += speed * (float)Math.Sin(direction);
 
+            positions[0] = position;
+            
             CheckWallHit();
         }
 
-        /// <summary>
-        /// Dessine la balle
-        /// </summary>
-        /// <param name="batch"></param>
-        public void Draw(SpriteBatch batch)
+        public override void Draw()
         {
             if (isVisible)
             {
                 int value = 50;
               
-                for (int i = maxSizeListePosition; i > 0; i--)
+                for (int i = maxSizeListePosition-1; i >= 0; i--)
                 {
-                    batch.Draw(texture, positions[i], null, new Color(value, value, value, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    game.SpriteBatch.Draw(texture, positions[i], null, new Color(value, value, value, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                     value += 25;
                 }
 
-                batch.Draw(texture, positions[0], null, new Color(255, 255, 255, 200), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                game.SpriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
         }
     }

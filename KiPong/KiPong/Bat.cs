@@ -5,13 +5,12 @@
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public abstract class Bat
+    public abstract class Bat : JeuItem
     {
-        protected Vector2 position;
-        private Rectangle size;
         private int points;
+        public int Points { get { return points; } }
+
         private int yHeight;
-        private Texture2D texture;
         protected Side side;
 
         private const int RatioWidth = 60;
@@ -21,7 +20,7 @@
         /// </summary>
         /// <param name="game">Le jeu propriétaire</param>
         /// <param name="side">Si true alors à gauche sinon à droite de l'écran</param>
-        public Bat(Game1 game, Side side, Difficulty d)
+        public Bat(KiPongGame g, Side side, Difficulty d) : base(g)
         {
             points = 0;
             this.side = side;
@@ -51,24 +50,16 @@
             }
         }
 
-        public Rectangle GetSize()
-        {
-            size.X = (int)position.X;
-            size.Y = (int)position.Y;
-            return size;
-        }
-
         public void IncrementPoints()
         {
             points++;
         }
 
-        public int GetPoints()
-        {
-            return points;
-        }
-
-        protected void SetPosition(Vector2 position)
+        /// <summary>
+        /// Change la position de la bat
+        /// </summary>
+        /// <param name="position">Nouvelle position de la bat</param>
+        protected void setPosition(Vector2 position)
         {
             if (position.Y < 0)
             {
@@ -81,21 +72,14 @@
             this.position = position;
         }
 
-        public Vector2 GetPosition()
-        {
-            return position;
-        }
-
-        public abstract void Update();
-
         public virtual void Reset()
         {
-            SetPosition(new Vector2(GetPosition().X, yHeight / 2 - size.Height));
+            setPosition(new Vector2(position.X, yHeight / 2 - size.Height));
         }
 
-        public void Draw(SpriteBatch batch)
+        public override void Draw()
         {
-            batch.Draw(texture, position, Color.White);
+            game.SpriteBatch.Draw(texture, position, Color.White);
         }
     }
 }

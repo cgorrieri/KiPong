@@ -9,9 +9,9 @@ namespace KiPong
 {
     public abstract class Input
     {
-        protected Game1 game;
+        protected KiPongGame game;
 
-        public Input(Game1 g)
+        public Input(KiPongGame g)
         {
             game = g;
         }

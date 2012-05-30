@@ -11,10 +11,10 @@ namespace KiPong
     {
         private Texture2D image;
         private String text;
-        private Game1 game;
+        private KiPongGame game;
         private float scale;
 
-        public Aide(Game1 g, String nameImage, String nameText)
+        public Aide(KiPongGame g, String nameImage, String nameText)
         {
             game = g;
             image = g.Content.Load<Texture2D>(nameImage);

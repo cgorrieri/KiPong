@@ -7,7 +7,8 @@
     public class AIBat : BatKeyboard
     {
         private Ball ball;
-        public AIBat(Game1 game, Side side, Difficulty d, Ball b) : base(game, side, d, null)
+
+        public AIBat(KiPongGame game, Side side, Difficulty d, Ball b) : base(game, side, d, null)
         {
             ball = b;
         }
@@ -16,14 +17,14 @@
         {
             if (ball.GetDirection() > 1.5 * Math.PI || ball.GetDirection() < 0.5 * Math.PI)
             {
-                if (ball.GetPosition().Y - 5 > GetPosition().Y + GetSize().Height / 2)
+                if (ball.Position.Y - 5 > Position.Y + Size.Height / 2)
                 {
                     MoveDown();
                 }
-                else if (ball.GetPosition().Y == GetPosition().Y + GetSize().Height / 2)
+                else if (ball.Position.Y == Position.Y + Size.Height / 2)
                 {
                 }
-                else if (ball.GetPosition().Y + 5 < GetPosition().Y + GetSize().Height / 2)
+                else if (ball.Position.Y + 5 < Position.Y + Size.Height / 2)
                 {
                     MoveUp();
                 }

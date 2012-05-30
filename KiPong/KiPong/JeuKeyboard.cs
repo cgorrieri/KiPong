@@ -9,7 +9,7 @@ namespace KiPong
     {
         KeyboardInput input;
 
-        public JeuKeyboard(Game1 g, Difficulty d, bool isOp, KeyboardInput i)
+        public JeuKeyboard(KiPongGame g, Difficulty d, bool isOp, KeyboardInput i)
             : base(g, d, isOp)
         {
             input = i;

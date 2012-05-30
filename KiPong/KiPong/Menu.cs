@@ -10,14 +10,13 @@ namespace KiPong
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public abstract class Menu
+    public abstract class Menu : GameObject
     {
         private static Color Gray = new Color(238, 238, 238);
         private static Color DarkGray = new Color(128, 128, 128);
         private static Color Blue = new Color(10, 0, 150);
         private static float ratioTitle = 5f / 16f;
 
-        protected Game1 game;
         // Menu
         public string Title { get; set; }
         public string Description { get; set; }
@@ -56,9 +55,8 @@ namespace KiPong
         public bool Valid { get; set; }
         public bool Back { get; set; }
 
-        public Menu(Game1 g, Aide a)
+        public Menu(KiPongGame g, Aide a) : base(g)
         {
-            game = g;
             aide = a;
             iterator = lastIterator = 0;
             margin = game.ScreenHeight /60;
@@ -79,12 +77,12 @@ namespace KiPong
 
         public void StartDescription() { start = true; }
 
-        public virtual void Update()
+        public override void Update()
         {
             if (start && isDraw)
             {
                 Utils.SpeechStop();
-                //Utils.SpeechSynchrone(Description);
+                Utils.SpeechSynchrone(Description);
                 lastIterator = -1;
                 start = false;
                 Iterator=0;
@@ -103,7 +101,7 @@ namespace KiPong
             }
         }
 
-        public void Draw()
+        public override void Draw()
         {
             // Aide
             if (isPrintingHelp)

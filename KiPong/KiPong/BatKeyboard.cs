@@ -16,7 +16,7 @@ namespace KiPong
         /// </summary>
         /// <param name="game">Le jeu propriétaire</param>
         /// <param name="side">Si true alors à gauche sinon à droite de l'écran</param>
-        public BatKeyboard(Game1 game, Side side, Difficulty d, KeyboardInput i) :  base(game, side, d)
+        public BatKeyboard(KiPongGame game, Side side, Difficulty d, KeyboardInput i) :  base(game, side, d)
         {
             input = i;
             switch (d)
@@ -58,12 +58,12 @@ namespace KiPong
 
         protected void MoveDown()
         {
-            SetPosition(position + new Vector2(0, speed));
+            setPosition(position + new Vector2(0, speed));
         }
 
         protected void MoveUp()
         {
-            SetPosition(position + new Vector2(0, -speed));
+            setPosition(position + new Vector2(0, -speed));
         }
 
         public override void Reset()

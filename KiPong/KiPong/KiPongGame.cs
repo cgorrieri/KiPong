@@ -14,7 +14,7 @@ namespace KiPong
     /// <summary>
     /// Menu Principale
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class KiPongGame : Game
     {
         /* -- GAME ELEMENT -- */
         public static GameStates gamestate;
@@ -52,7 +52,7 @@ namespace KiPong
             EndMenu
         }
 
-        public Game1()
+        public KiPongGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -77,7 +77,7 @@ namespace KiPong
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             screen = new Rectangle(0, 0, screenWidth, screenHeight);
 
