@@ -30,22 +30,22 @@ namespace KiPong
                 playerTwo = new BatKinect(game, Side.RIGHT, difficulty, input);
         }
 
-        public override void Draw(SpriteBatch spriteBatch, SpriteFont font)
+        public override void Draw()
         {
-            base.Draw(spriteBatch, font);
-            
-                if (!input.ReadyForOne && IsOnePlayer)
-                    DrawErrorMessage(spriteBatch, font, PlayerMissing);
-                if (!input.ReadyForTwo && !IsOnePlayer)
-                    DrawErrorMessage(spriteBatch, font, PlayersMissing);
+            base.Draw();
+
+            if (!input.ReadyForOne && IsOnePlayer)
+                DrawErrorMessage(PlayerMissing);
+            if (!input.ReadyForTwo && !IsOnePlayer)
+                DrawErrorMessage(PlayersMissing);
         }
 
-        private void DrawErrorMessage(SpriteBatch sb, SpriteFont font, String text)
+        private void DrawErrorMessage(String text)
         {
-            int width = (int)font.MeasureString(text).X, height = (int)font.MeasureString(text).Y;
+            int width = (int)game.Font.MeasureString(text).X, height = (int)game.Font.MeasureString(text).Y;
             Rectangle r = new Rectangle((game.ScreenWidth - width) / 2, (game.ScreenHeight - height) / 2, width, height);
-            Utils.DrawRectangle(sb, game.GraphicsDevice, r, Color.Red);
-            game.DrawStringAtCenter(sb, text, Color.White);
+            Utils.DrawRectangle(game.SpriteBatch, r, Color.Red);
+            game.DrawStringAtCenter(text, Color.White);
         }
     }
 }

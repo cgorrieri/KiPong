@@ -14,27 +14,31 @@ namespace KiPong
     {
 
         KinectInput input;
-        public MenuKinect(Game1 g, String title, List<string> items, KinectInput input)
-            : base(g, title, items)
+        public MenuKinect(Game1 g, KinectInput input)
+            : base(g, new Aide(g, "aideMenuKinectImg", "aideMenuKinectTxt"))
         {
             this.input = input;
         }
 
         public override void Update()
         {
-            float count = (float)MenuItems.Count;
-            float ratio = (float)input.LeftY / (float)game.ScreenHeight;
-            for (int i = 1; i <= count; i++)
+            base.Update();
+            if (!isPrintingHelp)
             {
-                if (ratio <= (float)i / count && ratio > (float)(i-1) /count )
+                float count = (float)MenuItems.Count;
+                float ratio = (float)input.LeftY / (float)game.ScreenHeight;
+                for (int i = 1; i <= count; i++)
                 {
-                    Iterator = i - 1;
-                    break;
+                    if (ratio <= (float)i / count && ratio > (float)(i - 1) / count)
+                    {
+                        Iterator = i - 1;
+                        break;
+                    }
                 }
-            }
 
-            Back = input.Retour();
-            Valid = input.Valider();
+                Back = input.Retour();
+                Valid = input.Valider();
+            }
         }
 
     }

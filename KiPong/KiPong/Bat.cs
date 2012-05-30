@@ -25,15 +25,16 @@
         {
             points = 0;
             this.side = side;
-            int height = game.ScreenHeight / getRatio(d);
-            int width = game.ScreenWidth / RatioWidth;
-            texture = new Texture2D(game.GraphicsDevice, width, height);
-            Color[] dataTitle = new Color[width * height];
+            // La raquette est un cube ou l'on ne voit qu'une partie
+            int cote = game.ScreenHeight / getRatio(d);
+            int apparentWidth = game.ScreenWidth / RatioWidth;
+            texture = new Texture2D(game.GraphicsDevice, cote, cote);
+            Color[] dataTitle = new Color[cote * cote];
             for (int index = 0; index < dataTitle.Length; ++index) dataTitle[index] = Color.Yellow;
             texture.SetData(dataTitle);
-            size = new Rectangle(0, 0, width, height);
-            if (side == Side.LEFT) position = new Vector2(0, game.ScreenHeight / 2 - height / 2);
-            else position = new Vector2(game.ScreenWidth - width, game.ScreenHeight / 2 - height / 2);
+            size = new Rectangle(0, 0, cote, cote);
+            if (side == Side.LEFT) position = new Vector2(apparentWidth - cote, game.ScreenHeight / 2 - cote / 2);
+            else position = new Vector2(game.ScreenWidth - apparentWidth, game.ScreenHeight / 2 - cote / 2);
             yHeight = game.ScreenHeight;
         }
 

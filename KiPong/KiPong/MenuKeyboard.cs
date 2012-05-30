@@ -13,26 +13,29 @@ namespace KiPong
     public class MenuKeyboard : Menu
     {
         KeyboardInput input;
-        public MenuKeyboard(Game1 g, String title, List<string> items, KeyboardInput input)
-            : base(g, title, items)
+        public MenuKeyboard(Game1 g, KeyboardInput input)
+            : base(g, new Aide(g, "aideMenuKeyboardImg", "aideMenuKeyboardTxt"))
         {
             this.input = input;
         }
 
         public override void Update()
         {
-            if (input.DownRight || input.DownLeft)
+            base.Update();
+            if (!isPrintingHelp)
             {
-                Iterator++;
-            }
-            else if (input.UpRight || input.UpLeft)
-            {
-                Iterator--;
-            }
+                if (input.DownRight || input.DownLeft)
+                {
+                    Iterator++;
+                }
+                else if (input.UpRight || input.UpLeft)
+                {
+                    Iterator--;
+                }
 
-            Valid = input.Valider();
-            
-            Back = input.Retour();
+                Valid = input.Valider();
+                Back = input.Retour();
+            }
         }
     }
 }

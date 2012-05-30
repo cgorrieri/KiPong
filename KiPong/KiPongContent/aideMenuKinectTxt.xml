@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="System.String">
-    Coucou elle a des gros seins !!
-    hihi tu sais de qui je parle !!
+    Pour te déplacer dans le menu, utilise la main droite.
+    Pour valider fais un grand mouvement de la main gauche, vers la droite.
+    Pour aller au menu précédent fait un grand mouvement de la main droite, vers la gauche.
+    Pour faire apparaitre l'aide ou la quitter, lève ta main gauche au dessus de ta tête.
   </Asset>
 </XnaContent>

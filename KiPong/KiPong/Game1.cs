@@ -26,21 +26,24 @@ namespace KiPong
         private KinectInput kinectInput;
         private KeyboardInput keyboardInput;
         private int screenWidth;
-        public int ScreenWidth
-        { get { return screenWidth; } }
+        public int ScreenWidth { get { return screenWidth; } }
         private int screenHeight;
-        public int ScreenHeight
-        { get { return screenHeight; } }
+        public int ScreenHeight { get { return screenHeight; } }
         private Rectangle screen;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private SpriteFont font;
+        public SpriteBatch SpriteBatch { get { return spriteBatch; } }
+        private SpriteFont font, fontTitle;
+        public SpriteFont Font { get { return font; } }
+        public SpriteFont FontTitle { get { return fontTitle; } }
 
-        /* AIDES */
-        private Aide aideMenuKeyboard, aideMenuKinect, aideJeu;
+        /* -- SPLASH SCREEN -- */
+        private Texture2D splashScreen;
+        private TimeSpan splashScreenTimer;
 
         public enum GameStates
         {
+            SplashScreen,
             ModeMenu,
             PlayingMenu,
             DifficultyMenu,
@@ -64,24 +67,24 @@ namespace KiPong
         protected override void Initialize()
         {
             // récupère la taille exacte de l'ecran
+            screenHeight = 770;
+            screenWidth = 1024;
             //screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             //screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            screenHeight = 600;
-            screenWidth = 800;
             keyboardInput = new KeyboardInput(this);
             keyboardInput.IsHoldable = false;
-            ModeMenu = new MenuKeyboard(this, "Mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" }, keyboardInput);
-            aideMenuKeyboard = new Aide(this, "aideMenuKinectImg", "aideMenuKinectTxt");
-            gamestate = GameStates.ModeMenu;
+            ModeMenu = new MenuKeyboard(this, keyboardInput);
+            SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             screen = new Rectangle(0, 0, screenWidth, screenHeight);
 
             IsKinectMode = false;
+            splashScreenTimer = new TimeSpan(0, 0, 3);
+            gamestate = GameStates.SplashScreen;
 
-            // TODO: Add your initialization logic here
             base.Initialize();
         }
 
@@ -92,6 +95,8 @@ namespace KiPong
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
+            fontTitle = Content.Load<SpriteFont>("FontTitle");
+            splashScreen = Content.Load<Texture2D>("SplashScreen");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -130,53 +135,63 @@ namespace KiPong
         {
             if (IsKinectMode)
             {
-                kinectInput = new KinectInput(this);
                 IsOnePlayer = true;
-                PlayingMenu = new MenuKinect(this, "KiPong", new List<string>() { "1 joueur", "2 joueurs" }, kinectInput);
-                DifficultyMenu = new MenuKinect(this, "Difficultes", new List<string>() { "Facile", "Medium", "Difficile" }, kinectInput);
-                PauseMenu = new MenuKinect(this, "Pause", new List<string>() { "Reprendre", "Menu", "Quitter" }, kinectInput);
-                EndMenu = new MenuKinect(this, "", new List<string>() { "Menu", "Quitter" }, kinectInput);
+                PlayingMenu = new MenuKinect(this, kinectInput);
+                DifficultyMenu = new MenuKinect(this, kinectInput);
+                PauseMenu = new MenuKinect(this, kinectInput);
+                EndMenu = new MenuKinect(this, kinectInput);
             }
             else
             {
-                PlayingMenu = new MenuKeyboard(this, "KiPong", new List<string>() { "1 joueur", "2 joueurs" }, keyboardInput);
-                DifficultyMenu = new MenuKeyboard(this, "Difficultes", new List<string>() { "Facile", "Medium", "Difficile" }, keyboardInput);
-                PauseMenu = new MenuKeyboard(this, "Pause", new List<string>() { "Reprendre", "Menu", "Quitter" }, keyboardInput);
-                EndMenu = new MenuKeyboard(this, "", new List<string>() { "Menu", "Quitter" }, keyboardInput);
+                PlayingMenu = new MenuKeyboard(this, keyboardInput);
+                DifficultyMenu = new MenuKeyboard(this, keyboardInput);
+                PauseMenu = new MenuKeyboard(this, keyboardInput);
+                EndMenu = new MenuKeyboard(this, keyboardInput);
             }
+            SetMenu(PlayingMenu, "Jouer", "Choisis le nombre de joueurs", new List<string>() { "1 joueur", "2 joueurs" });
+            SetMenu(DifficultyMenu, "Difficultés", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
+            SetMenu(PauseMenu, "Pause", "Que veux-tu faire ?", new List<string>() { "Reprendre", "Menu", "Quitter" });
+            SetMenu(EndMenu, "Fin du jeu", "", new List<string>() { "Menu", "Quitter" });
+        }
+
+        /// <summary>
+        /// Itialize un menu
+        /// </summary>
+        /// <param name="menu">Le menu à initializer</param>
+        /// <param name="title">Le title du menu</param>
+        /// <param name="desc">La description qui sera dite par la synthèse vocale</param>
+        /// <param name="items">Les différent boutons</param>
+        private void SetMenu(Menu menu, string title, string desc, List<string> items)
+        {
+            menu.Title = title;
+            menu.Description = desc;
+            menu.MenuItems = items;
         }
 
         /// <summary>
         /// Méthode appelé par le système de jeu en boucle
         /// </summary>
         /// <param name="gameTime"></param>
-        ///
         protected override void Update(GameTime gameTime)
         {
             keyboardInput.Update();
 
-            // Si on en en mode kinect et quelle n'est pas prète on retourne
-            if (IsKinectMode)
+            if (keyboardInput.Exit)
             {
-                if ((kinectInput.ReadyForOne && IsOnePlayer)
-                    || (kinectInput.ReadyForTwo && !IsOnePlayer))
-                {
-                    kinectInput.Update();
-                }
-                else
-                {
-                    base.Update(gameTime);
-                    return;
-                }
+                this.Exit();
             }
 
+            // Si le joueur demande de l'aide
+            bool AskHelping = IsKinectMode ? keyboardInput.Aide() || kinectInput.Aide() : keyboardInput.Aide();
+            
             #region Playing
             if (gamestate == GameStates.Running)
             {
                 jeu.Update();
                 if (jeu.Finish)
                 {
-                    EndMenu.Title = jeu.getMessage();
+                    EndMenu.Description = jeu.getMessage();
+                    EndMenu.StartDescription();
                     keyboardInput.IsHoldable = false;
                     gamestate = GameStates.EndMenu;
                 }
@@ -184,13 +199,16 @@ namespace KiPong
                 {
                     keyboardInput.IsHoldable = false;
                     gamestate = GameStates.PauseMenu;
+                    PauseMenu.StartDescription();
                 }
             }
             #endregion Playing
             #region ModeMenu
             else if (gamestate == GameStates.ModeMenu)
             {
+                ModeMenu.Help = AskHelping;
                 ModeMenu.Update();
+                
                 // Lors de la selection
                 if (ModeMenu.Valid)
                 {
@@ -202,24 +220,27 @@ namespace KiPong
                     else if (ModeMenu.Iterator == 1)
                     {
                         IsKinectMode = true;
+                        kinectInput = new KinectInput(this);
                     }
                     else if (ModeMenu.Iterator == 2)
                     {
                         this.Exit();
                     }
                     SetMenus();
-                    //ModeMenu.Iterator = 0;
+                    PlayingMenu.StartDescription();
                 }
             }
             #endregion ModeMenu
             #region Menu Jouer
             else if (gamestate == GameStates.PlayingMenu)
             {
+                PlayingMenu.Help = AskHelping;
                 PlayingMenu.Update();
                 // Lors de la selection
                 if (PlayingMenu.Valid)
                 {
                     gamestate = GameStates.DifficultyMenu;
+                    DifficultyMenu.StartDescription();
                     if (PlayingMenu.Iterator == 0)
                     {
                         IsOnePlayer = true;
@@ -228,11 +249,11 @@ namespace KiPong
                     {
                         IsOnePlayer = false;
                     }
-                    PlayingMenu.Iterator = 0;
                 }
                 if (PlayingMenu.Back)
                 {
                     gamestate = GameStates.ModeMenu;
+                    ModeMenu.StartDescription();
                     IsKinectMode = false;
                 }
             }
@@ -240,6 +261,7 @@ namespace KiPong
             #region DifficultyMenu
             else if (gamestate == GameStates.DifficultyMenu)
             {
+                DifficultyMenu.Help = AskHelping;
                 DifficultyMenu.Update();
 
                 // Lors de la selection
@@ -259,17 +281,18 @@ namespace KiPong
                     {
                         Jouer(Difficulty.HARD);
                     }
-                    DifficultyMenu.Iterator = 0;
                 }
                 if (DifficultyMenu.Back)
                 {
                     gamestate = GameStates.PlayingMenu;
+                    PlayingMenu.StartDescription();
                 }
             }
             #endregion DifficultyMenu
             #region PauseMenu
             else if (gamestate == GameStates.PauseMenu)
             {
+                PauseMenu.Help = AskHelping;
                 PauseMenu.Update();
 
                 // Lors de la selection
@@ -284,12 +307,12 @@ namespace KiPong
                     else if (PauseMenu.Iterator == 1)
                     {
                         gamestate = GameStates.PlayingMenu;
+                        PlayingMenu.StartDescription();
                     }
                     else if (PauseMenu.Iterator == 2)
                     {
                         this.Exit();
                     }
-                    PauseMenu.Iterator = 0;
                 }
                 if (PauseMenu.Back)
                 {
@@ -302,6 +325,7 @@ namespace KiPong
             #region EndMenu
             else if (gamestate == GameStates.EndMenu)
             {
+                EndMenu.Help = AskHelping;
                 EndMenu.Update();
 
                 // Lors de la selection
@@ -310,15 +334,26 @@ namespace KiPong
                     if (EndMenu.Iterator == 0)
                     {
                         gamestate = GameStates.PlayingMenu;
+                        PlayingMenu.StartDescription();
                     }
                     else if (EndMenu.Iterator == 1)
                     {
                         this.Exit();
                     }
-                    EndMenu.Iterator = 0;
                 }
             }
             #endregion EndMenu
+            #region SplashCreen
+            else if (gamestate == GameStates.SplashScreen)
+            {
+                splashScreenTimer -= gameTime.ElapsedGameTime;
+                if (splashScreenTimer.CompareTo(new TimeSpan(0)) <= 0)
+                {
+                    gamestate = GameStates.ModeMenu;
+                    ModeMenu.StartDescription();
+                }
+            }
+            #endregion SplashCreen
 
             base.Update(gameTime);
         }
@@ -329,43 +364,45 @@ namespace KiPong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
             spriteBatch.Begin();
             if (gamestate == GameStates.Running)
             {
-                jeu.Draw(spriteBatch, font);
+                jeu.Draw();
             }
             else if (gamestate == GameStates.ModeMenu)
             {
-                ModeMenu.Draw(spriteBatch, font);
+                ModeMenu.Draw();
             }
             else if (gamestate == GameStates.PlayingMenu)
             {
-                PlayingMenu.Draw(spriteBatch, font);
+                PlayingMenu.Draw();
             }
             else if (gamestate == GameStates.DifficultyMenu)
             {
-                DifficultyMenu.Draw(spriteBatch, font);
+                DifficultyMenu.Draw();
             }
             else if (gamestate == GameStates.PauseMenu)
             {
-                PauseMenu.Draw(spriteBatch, font);
+                PauseMenu.Draw();
             }
             else if (gamestate == GameStates.EndMenu)
             {
-                EndMenu.Draw(spriteBatch, font);
+                EndMenu.Draw();
+            }
+            else if (gamestate == GameStates.SplashScreen)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                SpriteBatch.Draw(splashScreen, splashScreen.Bounds, Color.White);
             }
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-
         #region Helpers
-        public void DrawStringAtCenter(SpriteBatch sb, String text, Color color)
+        public void DrawStringAtCenter(String text, Color color)
         {
-            Utils.DrawStringAtCenter(sb, font, screen, text, color);
+            Utils.DrawStringAtCenter(spriteBatch, font, screen, text, color);
         }
         #endregion Helpers
     }
