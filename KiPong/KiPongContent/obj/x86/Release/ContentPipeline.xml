@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\balle.xnb</Output>
-      <Time>2012-05-20T11:11:56+02:00</Time>
+      <Time>2012-05-31T11:08:54+02:00</Time>
     </Item>
     <Item>
       <Source>FontTitle.spritefont</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideJeuKinectImg.xnb</Output>
-      <Time>2012-05-28T12:22:19.6545476+02:00</Time>
+      <Time>2012-05-31T09:11:43.6042431+02:00</Time>
     </Item>
     <Item>
       <Source>aideMenuKinectTxt.xml</Source>

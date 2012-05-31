@@ -167,8 +167,8 @@ namespace KiPong
             }
             SetMenu(PlayingMenu, "Jouer", "Choisis le nombre de joueurs", new List<string>() { "1 joueur", "2 joueurs" });
             SetMenu(DifficultyMenu, "Difficultés", "Choisis la difficultées", new List<string>() { "Facile", "Moyen", "Difficile" });
-            SetMenu(PauseMenu, "Pause", "Que veux-tu faire ?", new List<string>() { "Reprendre", "Menu", "Quitter" });
-            SetMenu(EndMenu, "Fin du jeu", "", new List<string>() { "Menu", "Quitter" });
+            SetMenu(PauseMenu, "Pause", "Que veux-tu faire ?", new List<string>() { "Reprendre", "Menu"});
+            SetMenu(EndMenu, "Fin du jeu", "", new List<string>() { "Menu",  });
         }
 
         /// <summary>

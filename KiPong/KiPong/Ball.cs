@@ -45,9 +45,9 @@
             // creer la balle
             setSpeed(d);
             direction = 0;
-            int width = g.ScreenWidth / 30;
+            int width = g.ScreenWidth / 20;
             texture = g.Content.Load<Texture2D>("balle");
-            //scale = (float)width / (float)texture.Width;
+            scale = (float)width / (float)texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
 
@@ -72,16 +72,16 @@
             switch (d)
             {
                 case Difficulty.EASY:
-                    baseSpeed = 8f;
+                    baseSpeed = 7f;
                     increaseSpeed = 1f;
                     break;
                 case Difficulty.MEDIUM:
-                    baseSpeed = 10f;
-                    increaseSpeed = 2f;
+                    baseSpeed = 8f;
+                    increaseSpeed = 1.5f;
                     break;
                 default:
-                    baseSpeed = 12f;
-                    increaseSpeed = 4f;
+                    baseSpeed = 9f;
+                    increaseSpeed = 2f;
                     break;
             }
             speed = baseSpeed;
