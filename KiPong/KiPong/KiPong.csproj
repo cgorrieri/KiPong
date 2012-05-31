@@ -114,7 +114,6 @@
   <ItemGroup>
     <Compile Include="AIBat.cs" />
     <Compile Include="Helpable.cs" />
-    <Compile Include="Help.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="Bat.cs" />
     <Compile Include="BatKeyboard.cs" />

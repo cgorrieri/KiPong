@@ -41,8 +41,8 @@ namespace KiPong
         private const String Bat1Win = "Le joueur 1 gagne !";
         private const String Bat2Win = "Le joueur 2 gagne !";
 
-        public Pong(KiPongGame g, Difficulty d, bool isOnePlayer, Help aide)
-            : base(g, aide)
+        public Pong(KiPongGame g, String helpImg, String helpText, Difficulty d, bool isOnePlayer)
+            : base(g, helpImg, helpText)
         {
             IsOnePlayer = isOnePlayer;
             difficulty = d;

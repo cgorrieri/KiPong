@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace KiPong
 {
     public abstract class Helpable : GameObject
     {
-        private Help help;
+        private Texture2D image;
+        private String text;
+        private float scale;
+
         /// <summary>
         /// True pour demander l'aide
         /// </summary>
         public bool Help { get; set; }
         protected bool isPrintingHelp;
 
-        public Helpable(KiPongGame g, Help a)
-            : base(g)
+        public Helpable(KiPongGame g, String nameImage, String nameText) : base(g)
         {
-            help = a;
+            image = g.Content.Load<Texture2D>(nameImage);
+
+            if (image.Height / game.ScreenHeight <= image.Width / game.ScreenWidth)
+                scale = (float)game.ScreenHeight / (float)image.Height;
+            else
+                scale = (float)game.ScreenWidth / (float)image.Width;
+            text = g.Content.Load<String>(nameText);
         }
 
         public override void Update()
@@ -26,7 +35,7 @@ namespace KiPong
             if (Help && !isPrintingHelp)
             {
                 isPrintingHelp = true;
-                help.Speech();
+                Utils.SpeechAsynchrone(text);
             }
             else if (Help && isPrintingHelp)
             {
@@ -44,8 +53,7 @@ namespace KiPong
             if (isPrintingHelp)
             {
                 game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
-                help.Draw(game.SpriteBatch);
-                return;
+                game.SpriteBatch.Draw(image, new Vector2(0,0), null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
         }
     }

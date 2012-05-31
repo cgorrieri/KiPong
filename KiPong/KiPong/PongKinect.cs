@@ -18,7 +18,7 @@ namespace KiPong
         private const String PlayersMissing = "Le ou les joueurs ne sont pas detectes !";
 
         public PongKinect(KiPongGame g, Difficulty d, bool isOp, KinectInput i)
-            : base(g, d, isOp, new Help(g, "aideJeuKinectImg", "aideJeuKinectTxt"))
+            : base(g, "aideJeuKinectImg", "aideJeuKinectTxt", d, isOp)
         {
             input = i;
             setBats();

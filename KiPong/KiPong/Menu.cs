@@ -61,7 +61,8 @@ namespace KiPong
         public bool Valid { get; set; }
         public bool Back { get; set; }
 
-        public Menu(KiPongGame g, Help a) : base(g, a)
+        public Menu(KiPongGame g, String helpImg, String helpText)
+            : base(g, helpImg, helpText)
         {
             iterator = lastIterator = 0;
             margin = game.ScreenHeight /60;

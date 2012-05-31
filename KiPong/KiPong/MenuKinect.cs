@@ -14,7 +14,7 @@ namespace KiPong
     {
         KinectInput input;
         public MenuKinect(KiPongGame g, KinectInput input)
-            : base(g, new Help(g, "aideMenuKinectImg", "aideMenuKinectTxt"))
+            : base(g, "aideMenuKinectImg", "aideMenuKinectTxt")
         {
             this.input = input;
         }
