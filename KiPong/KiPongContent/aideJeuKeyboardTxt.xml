@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="System.String">
-    Pour déplacer la raquette utilise les touches ,z et ,s pour le joueur 1 à gauche.
-    Et les flèches haut et bas pour le joueur 2, s'il y en a un.
+    Pour déplacer la raquette utilise les touches "z" et "s" pour le joueur 1, à gauche.
+    Et les flèches "haut" et "bas" pour le joueur 2, à droite, s'il y en a un.
     Pour faire pause appui su expace.
     Pour faire apparaitre l'aide, ou la quitter, appui sur F1.
+    Pour quitter le jeu appui sur échap.
   </Asset>
 </XnaContent>

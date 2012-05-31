@@ -1,7 +1,6 @@
 Content\Font.xnb
 Content\balle.xnb
 Content\FontTitle.xnb
-Content\aideMenuKinectImg.xnb
 Content\SplashScreen.xnb
 Content\aideMenuKeyboardImg.xnb
 Content\aideJeuKeyboardImg.xnb
@@ -13,3 +12,4 @@ Content\aideJeuKinectTxt.xnb
 Content\WallHit.xnb
 Content\BatHit.xnb
 Content\goal.xnb
+Content\aideMenuKinectImg.xnb
