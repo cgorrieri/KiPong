@@ -134,7 +134,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aideMenuKinectImg.jpg">
+    <Compile Include="aideMenuKinectImg.png">
       <Name>aideMenuKinectImg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

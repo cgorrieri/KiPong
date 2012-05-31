@@ -128,13 +128,13 @@
       <Time>2012-05-30T11:49:45.7127456+02:00</Time>
     </Item>
     <Item>
-      <Source>aideMenuKinectImg.jpg</Source>
+      <Source>aideMenuKinectImg.png</Source>
       <Name>aideMenuKinectImg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Release\Content\aideMenuKinectImg.xnb</Output>
-      <Time>2012-05-31T08:22:17.9986201+02:00</Time>
+      <Time>2012-05-31T09:11:43.6042431+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

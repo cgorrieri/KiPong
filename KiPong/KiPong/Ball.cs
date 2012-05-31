@@ -47,7 +47,7 @@
             direction = 0;
             int width = g.ScreenWidth / 30;
             texture = g.Content.Load<Texture2D>("balle");
-            scale = (float)width / (float)texture.Width;
+            //scale = (float)width / (float)texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
 

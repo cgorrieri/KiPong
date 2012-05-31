@@ -26,7 +26,7 @@ namespace KiPong
             if (side == Side.LEFT)
                 setPosition(new Vector2(position.X, input.LeftY));
             else
-                setPosition(new Vector2(position.X, input.LeftY));
+                setPosition(new Vector2(position.X, input.RightY));
         }
     }
 }

@@ -59,6 +59,7 @@ namespace KiPong
         /* -- SPLASH SCREEN -- */
         private Texture2D splashScreen;
         private TimeSpan splashScreenTimer;
+        private Vector2 screenSplashPosition;
 
         /// <summary>
         /// Les différents états du jeu
@@ -86,17 +87,15 @@ namespace KiPong
         protected override void Initialize()
         {
             // récupère la taille exacte de l'ecran
-            screenHeight = 770;
-            screenWidth = 1024;
-            //screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            //screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             keyboardInput = new KeyboardInput();
             keyboardInput.IsHoldable = false;
             ModeMenu = new MenuKeyboard(this, keyboardInput);
             SetMenu(ModeMenu, "Mode de jeu", "Choisis ton mode de jeu", new List<string>() { "Clavier", "Kinect", "Quitter" });
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             screen = new Rectangle(0, 0, screenWidth, screenHeight);
 
@@ -115,6 +114,7 @@ namespace KiPong
             font = Content.Load<SpriteFont>("Font");
             fontTitle = Content.Load<SpriteFont>("FontTitle");
             splashScreen = Content.Load<Texture2D>("SplashScreen");
+            screenSplashPosition = new Vector2((screenWidth - splashScreen.Width) / 2, (screenHeight - splashScreen.Height) / 2);
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -411,7 +411,7 @@ namespace KiPong
             else if (gamestate == GameStates.SplashScreen)
             {
                 GraphicsDevice.Clear(Color.Black);
-                SpriteBatch.Draw(splashScreen, splashScreen.Bounds, Color.White);
+                SpriteBatch.Draw(splashScreen, screen, Color.White);
             }
             spriteBatch.End();
 

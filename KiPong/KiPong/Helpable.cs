@@ -23,7 +23,7 @@ namespace KiPong
         {
             image = g.Content.Load<Texture2D>(nameImage);
 
-            if (image.Height > image.Width)
+            if (image.Height / game.ScreenHeight <= image.Width / game.ScreenWidth)
                 scale = (float)game.ScreenHeight / (float)image.Height;
             else
                 scale = (float)game.ScreenWidth / (float)image.Width;
