@@ -19,7 +19,7 @@
         /// <summary>
         /// L'aipaisseur de la bat
         /// </summary>
-        private const int RatioWidth = 60;
+        private const int RatioWidth = 50;
 
         /// <summary>
         /// Initialise une batte
@@ -51,11 +51,11 @@
             switch (d)
             {
                 case Difficulty.EASY:
-                    return 5;
+                    return 4;
                 case Difficulty.MEDIUM:
-                    return 6;
+                    return 5;
                 default:
-                    return 7;
+                    return 6;
             }
         }
 
