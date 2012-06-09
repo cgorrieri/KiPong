@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Prise en main de l'environnement DeViNT</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20120131;18005200">
+	<STYLE TYPE="text/css">
+	<!--
+		H3.ctl { font-family: "Mangal" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="fr-FR" DIR="LTR">
+<H1>Projet DeViNT : d&eacute;couverte de l'atelier DeViNT</H1>
+<P>Il s'agit dans cette premi&egrave;re s&eacute;ance de d&eacute;couvrir
+les structures, principes et formats des applications DeViNT. Apr&egrave;s
+quoi, vous serez capable d'utiliser les projets DeViNT existants afin
+de vous en inspirer, de les am&eacute;liorer, ou d'en inventer de
+nouveaux. 
+</P>
+<H3 CLASS="western"><STRONG>Cr&eacute;ation de votre r&eacute;pertoire de projet</STRONG></H3>
+<p CLASS="western">Ce r&eacute;pertoire sera utilis&eacute; pour rendre le
+  sujet propos&eacute;, dans sujet.html, d'ici la prochaine s&eacute;ance,
+  puis les sp&eacute;cifications, le sc&eacute;nario de la pr&eacute;sentation
+  &agrave; Cl&eacute;ment ADER, et enfin le bilan de cette pr&eacute;sentation. </p>
+<OL>
+  <LI>
+    <P STYLE="margin-bottom: 0cm">d&eacute;clarez votre groupe de projet (un groupe est compos&eacute; de 3
+      &agrave; 4 &eacute;l&egrave;ves dans le m&ecirc;me groupe de TD, par exemple 'G1') </P>
+  <LI>utilisez le num&eacute;ro de
+    projet qui vous est allou&eacute;, mettons '1', pour cr&eacute;er
+    un r&eacute;pertoire nomm&eacute;
+    Projet1G1 dans le dossier :
+    <UL>
+      <LI>/net/web/s/strombon/public/DEVINT2012
+        (chemin Unix) 
+      <LI>\sfe\\web\s\strombon\public\DEVINT2012
+        (chemin Windows), 
+      <LI><strong>Attention, celui d'entre vous qui
+        cr&eacute;e le r&eacute;pertoire ProjetxxGy sera le seul &agrave;
+        pouvoir y &eacute;crire par la suite !! </strong>
+    </UL>
+  <li>v&eacute;rifiez que votre r&eacute;pertoire est bien inclus dans la Page des projets 2012 o&ugrave; un lien hypertexte Projet1G1/index.html est install&eacute;,  </li>
+  <li>appliquez &agrave; vos productions un validateur d'accessibilit&eacute; (celui du W3C, ou un autre, inspirez vous des projets 2011 et 2010).</li>
+</OL>
+<H3 CLASS="western">Remarques pr&eacute;liminaires</H3>
+<UL>
+  <LI>
+    <P STYLE="margin-bottom: 0cm">Les d&eacute;ficients visuels
+      utilisent pour la plupart Windows. Il est donc recommand&eacute; de
+      passer sous windows pour ce projet (tout au moins vous assurez avant
+      la livraison que tout fonctionne correctement sous windows). </P>
+  <LI>Vous devez vous assurer que vous
+    avec un jdk complet qui contient la commande &quot;jar&quot; (il se
+    peut que vous ayiez seulement un jre sous windows). Il vous suffit
+    pour cela d'aller sur le site de Sun <A HREF="http://java.sun.com/javase/downloads/widget/jdk6.jsp">http://java.sun.com/javase/downloads/widget/jdk6.jsp</A> et de t&eacute;l&eacute;charger un jdk. Ensuite il faut mettre &agrave;
+    jour votre path pour que le r&eacute;pertoire des ex&eacute;cutables
+    java soit connu. Pour cela, clic droit sur &quot;poste de travail&quot;
+    &gt; proprietes &gt; onglet &quot;avanc&eacute;&quot; &gt; bouton
+    &quot;variable d'environnement&quot; en bas. Vous compl&eacute;tez
+    le path avec le chemin vers les ex&eacute;cutables java.
+    <P STYLE="margin-bottom: 0cm"><STRONG>Pour ceux qui travaillent
+      sous eclipse</STRONG>, quelques points &agrave; savoir. Le mod&egrave;le
+      de jeu DeViNT, comme votre futur projet, sera lanc&eacute; &agrave;
+      partir d'une interface commune &agrave; tous les projets.
+      L'ex&eacute;cution est lanc&eacute;e depuis le sous-r&eacute;pertoire
+      &quot;bin&quot;. Sous eclipse, il vous faudra cr&eacute;er une
+      configuraton pour lancer votre projet, et dans l'onglet &quot;arguments&quot;,
+      en bas, &quot;working directory&quot; s&eacute;lectionner le
+      r&eacute;pertoire &quot;bin&quot;. Il vous faut aussi avoir acc&egrave;s
+      &agrave; SI_VOX (la synth&egrave;se vocale qui sait parler!). Pour
+      cela, &quot;configure build path&quot;, onglet &quot;librairies&quot;,
+      &quot;add external jar&quot; et aller chercher SI_VOX.jar dans le
+      r&eacute;pertoire VocalyzeSIVox/bin </P>
+  <LI>Les classes du mod&egrave;le de jeu que vous allez manipuler
+    dans ce TP sont des exemples d'utilisation de composants Swing. <FONT COLOR="#800000"><a href="descriptionAPIDevint.pdf">Une
+      description de ces classes est ici</a></FONT>. Pour en savoir plus sur
+    les composants graphiques, il est recommand&eacute; d'utiliser le
+    tutorial de Sun qui est tr&egrave;s bien fait <A HREF="http://java.sun.com/docs/books/tutorial/uiswing/components/index.html">http://java.sun.com/docs/books/tutorial/uiswing/components/index.html</A>
+</UL>
+<H3 CLASS="western">Prise en main de l'atelier DeViNT</H3>
+<p>On utilise le projet Modele_de_jeu qui montre comment cr&eacute;er des menus, utiliser la synth&egrave;se vocale, utiliser le clavier, se conformer au format et &agrave; la structure qui permet l'int&eacute;gration des projets, etc ... ce projet vide peut servir de gabarit pour cr&eacute;er un nouveau projet DeViNT.
+</p>
+<OL>
+	<LI>
+	  <P STYLE="margin-bottom: 0cm"><STRONG>AtelierDeViNT :</STRONG>
+	t&eacute;l&eacute;charger modele.zip, listor.zip, et vocalyze.zip
+	sur <A HREF="http://www-local.polytech.unice.fr/DEVINT/AtelierDeViNT">http://www-local.polytech.unice.fr/DEVINT/AtelierDeViNT
+	</A>&agrave; d&eacute;compresser dans un r&eacute;pertoire unique,
+	sous Windows. 
+	Il faudra charger aussi jre_lib_win.zip qui contient les librairies et le jre utilis&eacute;s par les projets sur le CD, on peut le dans l'AtelierDeViNT, ou si c'est trop long, on trouvera la version d&eacute;compress&eacute;e sur le CD 2011.</P>
+	<LI><STRONG>Structure d'un projet
+	    DeViNT :</STRONG> Allez dans le r&eacute;pertoire Modele_de_jeu, 
+      
+	    <OL>
+	      <LI>dans bin, trouver, ouvrir le fichier execution.bat relever la variable 'path' des projets et
+	          lancer l'execution. 
+          <LI>dans src, recenser et identifier
+	            les diff&eacute;rentes classes, et ouvrir et ex&eacute;cuter
+	            compilation.bat 
+          <LI>dans ressources, trouver et
+	              ouvrir le fichier si_vox_ihm.conf , noter la valeur du
+	              param&egrave;tre NBVOIX 
+    et celle du param&egrave;tre RAPIDITE (rapidit&eacute; d'&eacute;locution).</OL>
+	<li><STRONG>Cr&eacute;er un projet :</STRONG>
+	  <OL>
+	    <LI>copier le r&eacute;pertoire
+	        Modele_de_jeu dans un nouveau r&eacute;pertoire, nomm&eacute;
+          &quot;MonJeu&quot; (ou tout autre nom de votre choix). 
+        <LI>modifier la classe LancementJeu
+	          pour modifier le titre de la fen&ecirc;tre, et v&eacute;rifier en
+	          compilant et en ex&eacute;cutant. 
+        <LI>Noter que sous eclipse, il faut stipuler que le r&eacute;pertoire d'ex&eacute;cution est le dossier bin du projet, et ajouter l'archive externe SIVOX.jar qui se trouve dans le dossier VocalyzeSIVOX/bin 
+	  </OL>
+    </li>
+	<li><STRONG>Menus :</STRONG> ajouter
+	un choix &quot;MonChoix&quot; (ou ...) dans le menu de votre jeu. et
+	lancer le jeu pour voir si cela a march&eacute;.  </li>
+	<li><STRONG>Niveau de jeu :</STRONG>
+    copier le fichier &quot;Jeu.java&quot; dans le fichier &quot;MonJeu.java&quot;
+    &agrave; modifier &agrave; votre guise (exemple: changer le fichier
+    wave d'accueil, afficher un autre message dans le champ de texte,
+    changer les couleurs, ...). Associer le lancement de &quot;MonJeu&quot;
+    &agrave; l'option &quot;MonChoix&quot; que vous avez ajout&eacute;e
+    dans la classe &quot;MenuJeu&quot;. (Indice: modifier la m&eacute;thode
+    &quot;lancerOption&quot;).  </li>
+	<li><B>Gestion des pr&eacute;f&eacute;rences:
+	  </B><SPAN STYLE="font-weight: normal">modifier la classe
+      &laquo;&nbsp;UneImage.java&nbsp;&raquo; pour pouvoir g&eacute;rer
+	    les pr&eacute;f&eacute;rences: le label qui contient Th&eacute;o
+	    doit prendre ses couleurs dans la classe Preferences. Pour cela,
+	    inspirez-vous de la classe &laquo;&nbsp;Option.java&nbsp;&raquo;, et
+    regardez la m&eacute;thode &laquo;&nbsp;changeColor&nbsp;&raquo;</SPAN></li>
+	<li><STRONG>Synth&egrave;se vocale :</STRONG>
+      utilisation de la ligne de commande :
+	    <OL>
+	    <LI>Aller dans le dossier
+	        VocalyzeSIVOX/bin et cr&eacute;er un fichier mot.txt qui contient
+	        la phrase que vous voulez entendre quand on lance votre jeu : 
+        <LI>Modifier execution.bat pour qu'il
+	          ex&eacute;cute: <EM>java -jar SI_VOX.jar -f mot.txt accueil</EM> ,
+	          pour cr&eacute;er un fichier accueil.pho et un fichier accueil.wav
+          &agrave; partir de mot.txt 
+        <LI>R&eacute;cup&eacute;rer le
+	            fichier accueil.wav pour le mettre dans MonJeu/ressources (en
+	            remplacement du fichier existant). Aller dans MonJeu/bin et lancer
+	            votre je<STRONG>u</STRONG> 
+        <li><STRONG>R&egrave;gles de prononciation :</STRONG> la synth&egrave;se vocale prononce mal le mot 'Fichier', aller ajouter une exception dans le fichier ressources/donneesMbrola/rules/exception.txt de votre projet.</li>
+	  </OL>
+    </li>
+	<li><STRONG>Listor :</STRONG> Pour v&eacute;rifier que votre jeu
+	respecte bien les formats de livraison pr&eacute;vus, c'est simple :
+	il doit &ecirc;tre vu et lanc&eacute; par Listor, l'interface
+	commune de lancement des jeux (sur le CD DeViNT), <STRONG>ce sera
+	notre test final d'int&eacute;gration pour votre projet</STRONG>.
+	C'est le cas puisque nous avons recopi&eacute; la structure de
+	Modele_de_jeu (bin avec execution.bat, src avec compilation.bat,
+	ressources avec si_vox.conf, doc avec manuel.html). Lancer Listor
+	(en allant dans le r&eacute;pertoire Listor/bin et en lan&ccedil;ant
+	execution.bat) et v&eacute;rifier que votre jeu appara&icirc;t et
+	fonctionne correctement.</li>
+</OL>
+<H3 CLASS="western">Pour aller plus loin :</H3>
+<OL>
+  <LI><P STYLE="margin-bottom: 0cm"><STRONG>Utilisation du clavier :</STRONG>
+	Modifier Option.java pour que le message &quot;Jennifer est membre
+	de l'APEDV&quot; soit lu par la synth&egrave;se vocale lorsqu'on
+	enfonce la touche 'F3' du clavier. Deux indices : 
+	</P>
+	<OL>
+		<LI>on surchargera la m&eacute;thode
+		keyPressed(KeyEvent e) h&eacute;rit&eacute;e de DevintFrame.        
+		<LI>on fait lire un texte court &agrave;
+		SI_VOX en faisant v.playShortText(t) o&ugrave; v est une instance
+	  de SIVOXDevint et t est le texte,        
+		<LI>on peut utiliser v.playText(t)
+		  aussi, et v.stop() arr&ecirc;te la lecture. 
+        </OL>
+  <li><STRONG>R&egrave;gles de
+          prononciation :</STRONG> vous avez d&ucirc; constater que le message
+          lu par SI_VOX est quasi incompr&eacute;hensible. Vous pouvez
+          am&eacute;liorer les r&egrave;gles de prononciation en ajoutant des
+          r&egrave;gles sp&eacute;cifiques pour votre projet. 
+  
+	      <OL>
+	        <LI>Allez dans
+	            ressources/donneesMbrola/rules. 
+            <LI>Modifiez le fichier
+              &quot;accronymes.txt&quot; pour lui faire prononcer correctement
+	              APEDV (accronyme pour Association des Parents d'Enfants D&eacute;ficients
+	              Visuels). 
+            <LI>Modifiez le fichier
+              &quot;exception.txt&quot; pour lui faire prononcer correctement
+              &quot;Jennifer&quot;. 
+            <LI>Lancez votre jeu et v&eacute;rifiez
+	                  si c'est mieux. 
+    </OL>
+    </li>
+  <li><STRONG>Synth&egrave;se Acapela :</STRONG>
+	une autre solution pour faire lire un texte court, est d'utiliser la
+	synth&egrave;se commerciale Acapela, via un serveur de l'&eacute;cole.
+	Cela n'est possible que si vous &ecirc;tes &agrave; l'EPU, nous
+	avons une licence.  
+	<OL>
+	  <LI>T&eacute;l&eacute;charger
+	      acapela.zip. 
+      <LI>Aller dans acapela, modifier le
+	        fichier acapela.bat pour lui faire lire votre message et le g&eacute;n&eacute;rer
+	        dans jennifer.wav. Ecouter la diff&eacute;rence. 
+      <LI>Modifier la classe MonChoixInterface.java pour lui faire
+	          lire jennifer.wav. 
+    </OL>
+  </li>
+</OL>
+<H3 CLASS="western"><STRONG>Autres projets DeViNT </STRONG>: 
+</H3>
+<P>En connaissant maintenant les grands principes de format et de
+structure des projets DeViNT, vous &ecirc;tes &agrave; m&ecirc;me
+d'ex&eacute;cuter d'autres jeux DeViNT, tels FortDeViNT dans
+l'AtelierDeViNT ou d'autres, beaucoup d'autres, qui sont accessibles
+dans le r&eacute;pertoire SourcesProjetsDeViNT, ou dans le r&eacute;pertoire
+CDDeViNT\CDDeViNT2008\LesLogiciels, ...</P>
+<H3 CLASS="western">Nota: privil&eacute;giez les textes courts,
+interrompus par les actions de l'utilisateur (v.stop();) 
+</H3>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Acapela peut &ecirc;tre utilis&eacute;
+	pour des textes dont le contenu est connu par avance (ex: messages
+	d'accueil). On cr&eacute;e des fichiers wave qui sont ensuite inclus
+	dans le projet. La diction est plus claire, et l'intonation plus
+	dynamique que celles de VocalyzeSIVOX, mais c'est une synth&egrave;se
+	vocale payante. 
+	</P>
+	<LI>VocalyzeSIVOX est utilis&eacute;
+      pour les textes &agrave; lire en temps r&eacute;el, et dont le
+	    contenu est variable (ex: les scores, ...) 
+  <LI>Pour avoir des textes plus vivants et naturels, vous pouvez
+    enregistrer des fichiers wave, mais soignez la diction et
+    l'intonation 
+<BR><BR><BR>
+</UL>
+</BODY>
+</HTML>

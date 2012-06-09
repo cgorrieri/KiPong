@@ -1,0 +1,69 @@
+﻿<infos>
+    <year>2011</year>
+    <gamecategories>
+		<gamecategory>Atelier DeViNT</gamecategory>
+    </gamecategories>
+    <shortdescription> <![CDATA[Jeu de pong incluant un mode au clavier et un mode avec la kinect]]> </shortdescription>
+    <public>MV</public>
+  <gamestate><![CDATA[Valider pour le CD]]></gamestate>
+    <age><![CDATA[tous âges]]></age>
+    <title><![CDATA[KiPong]]></title>
+    <authors>
+		<author><![CDATA[Cyril Gorrieri]]></author>
+        <author><![CDATA[Fabien Belli]]></author>
+        <author><![CDATA[J&eacute;r&eacute;mie Blond]]></author>
+    </authors>
+    <notes>
+		<note> <![CDATA[Les enfants doivent meusurer au moins 1m20]]></note>
+	</notes>
+    <gameplay><![CDATA[
+    <h2>Jeu tous le jeu</h2>
+    <ul>
+        <li>Echap quitte le jeu</li>
+        <li>F1 affiche ou quitte l'aide correspondant au type de jeu</li>
+        <li>F2 change les couleurs</li>
+    </ul>
+    <h2>Jeu au clavier</h2>
+    <h3>Dans les menus</h3>
+	<ul>
+        <li>Entrer valide le choix</li>
+        <li>Effacer fait un retour en arri&egrave;re</li>
+        <li>les touches 'bas' et 'haut' et/ou 'z' et 's' pour se d&eacute;placer dans le menu</li>
+	</ul>
+    <h3>Dans le jeu</h3>
+	<ul>
+        <li>Espace fait pause sur le jeu</li>
+        <li>Les touches 'z' et 's' d&eacute;placent la batte du joueur 1 (&agrave; gauche)</li>
+        <li>Les touches haut et bas d&eacute;placent la batte du joueur 2 (&agrave; droite) s'il y en a un</li>
+	</ul>
+    <h2>Jeu avec la kinect</h2>
+    <h3>Dans tous le jeu avec la kinect</h3>
+    <ul><li>Lever la main gauche au dessus de la tête pour afficher et quitter l'aide</li></ul>
+    <h3>Dans les menus</h3>
+	<ul>
+        <li>Pour valider, faire un grand mouvement de la gauche vers la droite avec la main gauche</li>
+        <li>Pour retourner au menu pr&eacute;c&eacute;dent, faire un grand mouvement de la droite vers la gauche avec la main droite</li>
+        <li>Pour se d&eacute;placer dans le menu, monter ou descendre la main droite</li>
+	</ul>
+    <h3>Dans le jeu</h3>
+	<ul>
+        <li>Pour faire pause, faire un grand mouvement de la gauche vers la droite avec la main gauche</li>
+        <li>Le joueur 1 est à gauche et d&eacute;place sa batte en montant et descendant sa main droite</li>
+        <li>Le joueur 2 est à droite et d&eacute;place sa batte en montant et descendant sa main droite</li>
+	</ul>
+	<h2>Utilisation de la synth&egrave;se vocale</h2>
+    <p>Annoncer &agrave; voix haute :</p>
+	<ul>
+        <li>Ce permet de faire les menu</li>
+        <li>Les nom des options sur les menus</li>
+        <li>L'aide</li>
+	</ul>
+]]></gameplay>
+<gamerules><![CDATA[
+	<h2>Compilation et ex&eacute;cution :</h4>
+	<ul>
+	<li>pour la compilation ouvrir le projet, ouvrir le fichier src/KiPong.sln avec visual studio 2010. Il faut avoir installer XNA 4.0 et le SDK kinect</li>
+	<li>KiPong/bin/execution.bat ex&eacute;cute le projet, bin est le r&eacute;pertoire d&rsquo;ex&eacute;cution</li>
+	</ul>
+]]></gamerules>
+</infos>

@@ -1,0 +1,124 @@
+<style type="text/css" media="all">
+		@import "styles/base.css";
+</style>
+<body>
+  <h3>Modele_de_Jeu (H&eacute;l&egrave;ne Collavizza et Jean-Paul Stromboni, 2007-2011)</h3>
+  <h4>Public concern&eacute; : les concepteurs et d&eacute;veloppeurs de projets Devint</h4>
+  <h4>Note d'utilisation : le dossier du projet doit &ecirc;tre au m&ecirc;me niveau que le dossier VocalyzeSIVOX</h4>
+  <p>Cette application est un squelette de projet Devint, un  exemple con&ccedil;u pour mettre en &oelig;uvre les contraintes &agrave; respecter pour  l&rsquo;utilisation de la synth&egrave;se vocale, l&rsquo;int&eacute;gration au CD Devint,  l&rsquo;accessibilit&eacute;, et la facilit&eacute; d&rsquo;utilisation des projets Devint.</p>
+<p>Modele_de_jeu fournit un point de d&eacute;part pour d&eacute;velopper un  projet Devint. </p>
+<h4>Voici les contraintes de structure et de contenu</h4>
+<p>Soit un projet Devint dans un dossier nomm&eacute; MonJeu, il inclut quatre sous dossiers :</p>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  bin&nbsp;: dossier d&rsquo;ex&eacute;cution du projet,  contient les jar, class, et le fichier execution.bat</li>
+  <li><!--[endif]-->
+    doc&nbsp;: contient manuel.html, pour l&rsquo;aide du  jeu, et infos.txt, pour l&rsquo;installation du CD</li>
+  <li><!--[endif]-->
+    ressources&nbsp;: contient les sons, images  utilis&eacute;s, les param&egrave;tres de la synth&egrave;se vocale, dans si_vox_ihm.conf, les  r&egrave;gles de prononciation dans donneesMbrola/rules/</li>
+  <li><!--[endif]-->
+    src&nbsp;: contient les sources, et le fichier  compilation.bat qui cr&eacute;e l&rsquo;ex&eacute;cutable dans bin</li>
+</ul>
+<p>De plus, pour utiliser la synth&egrave;se vocale et le menu de  lancement du CD:</p>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  le dossier MonJeu  doit se trouver au niveau du dossier VocalyzeSIVOX/ de la synth&egrave;se, et le  classpath du projet contenir &lsquo;../../VocalyzeSIVOX/bin/SI_VOX.jar&rsquo;</li>
+  <li><!--[endif]-->
+    le dossier Listor/ du lanceur des jeux du CD est  aussi au niveau du dossier MonJeu.</li>
+</ul>
+<h4>Compilation et ex&eacute;cution&nbsp;:</h4>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  src/compilation.bat doit compiler le projet, et  placer l&rsquo;ex&eacute;cutable dans MonJeu/bin </li>
+  <li><!--[endif]-->
+    MonJeu/bin/execution.bat  doit ex&eacute;cuter le projet, bin est le r&eacute;pertoire d&rsquo;ex&eacute;cution</li>
+</ul>
+<h4>Utilisation du clavier</h4>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  Echap  termine les niveaux, et au dernier niveau termine le jeu</li>
+  <li>
+    <!--[if !supportLists]-->
+  Les fl&egrave;ches directionnelles permettent de  balayer les menus en boucle </li>
+  <li>
+    <!--[if !supportLists]-->
+  Enter  valide les choix</li>
+  <li>
+    <!--[if !supportLists]-->
+  F1  donne le niveau de jeu et les commandes clavier utilisables et leur effet,  utiliser F2, F3, F4,  &hellip; pour s&eacute;parer au besoin les infos sur le jeu, les scores, les r&egrave;gles, les  indices, les cr&eacute;dits, &hellip;</li>
+  <li>Espace,  Ctrl, Shift, fl&egrave;ches directionnelles, pav&eacute; num&eacute;rique, &hellip; selon les  besoins.</li>
+</ul>
+<h4>Utilisation de la synth&egrave;se vocale</h4>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  Annoncer &agrave; voix haute chaque &eacute;volution du jeu,  par exemple</li>
+</ul>
+<blockquote>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+&laquo;&nbsp;bienvenue  dans T&eacute;tris, taper F1 pour savoir  comment jouer&nbsp;&raquo;</p>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    Ou  &laquo;&nbsp;nouvelle partie, pour jouer, tape Entr&eacute;e&nbsp;&raquo;</p>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    Ou  &laquo;&nbsp;voici les scores, F2 pour r&eacute;p&eacute;ter&nbsp;&raquo;</p>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    Une  commande du clavier doit r&eacute;p&eacute;ter ce message, F1 par exemple</p>
+</blockquote>
+<ul>
+  <li>
+    <!--[if !supportLists]-->
+  Le jeu doit rester &agrave; l&rsquo;&eacute;coute du clavier et  r&eacute;agir &agrave; toute action du joueur</li>
+</ul>
+<blockquote>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    La  voix doit &ecirc;tre interrompue par toute action du joueur&nbsp;: clavier, souris,  tapis</p>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    Le jeu  doit annoncer &agrave; voix haute les commandes qu&rsquo;il d&eacute;tecte</p>
+  <blockquote>
+    <p>
+      <!--[if !supportLists]-->
+  &sect;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!--[endif]-->
+      Par exemple, si la touche &lsquo;A&rsquo; est press&eacute;e,  &laquo;&nbsp;A&nbsp;: touche inactive&nbsp;&raquo;</p>
+    <p>
+      <!--[if !supportLists]-->
+  &sect;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!--[endif]-->
+      Ou si Entr&eacute;e  est utilis&eacute;e, &laquo;&nbsp;Entr&eacute;e&nbsp;:  d&eacute;butons une nouvelle partie&nbsp;&raquo;</p>
+    <p>
+      <!--[if !supportLists]-->
+  &sect;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!--[endif]-->
+      Ou encore &laquo;&nbsp;F3&nbsp;: voici les indices  r&eacute;colt&eacute;s&nbsp;&raquo;</p>
+  </blockquote>
+  <p>
+    <!--[if !supportLists]-->
+    o&nbsp;
+    <!--[endif]-->
+    On  sugg&egrave;re de faire dire par la synth&egrave;se les touches du clavier utilis&eacute;es</p>
+</blockquote>
+<h1><br>
+</h1>
+</body>

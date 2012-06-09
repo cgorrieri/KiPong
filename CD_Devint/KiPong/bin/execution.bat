@@ -1,0 +1,2 @@
+KiPong.exe
+rem pause
