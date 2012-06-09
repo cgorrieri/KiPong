@@ -80,6 +80,7 @@ namespace KiPong
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             ColorManager.InitializeColors();
+            Console.WriteLine(Color.Beige.ToString());
         }
 
         /// <summary>

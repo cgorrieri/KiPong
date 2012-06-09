@@ -10,6 +10,8 @@ namespace KiPong
 {
     public abstract class Pong : Helpable
     {
+        public static Color Background, TextColor;
+
         protected Bat bat1, bat2;
         protected AIBat bot;
         protected Ball ball;
@@ -220,11 +222,11 @@ namespace KiPong
             base.Draw();
             if (isPrintingHelp) return;
 
-            game.SpriteBatch.GraphicsDevice.Clear(Color.Black);
+            game.SpriteBatch.GraphicsDevice.Clear(Background);
             Bat secondBat = IsOnePlayer ? bot : bat2;
             // Points et ligne
-            game.SpriteBatch.DrawString(game.FontTitle, bat1.Points.ToString(), posPointsBat1, Color.White);
-            game.SpriteBatch.DrawString(game.FontTitle, secondBat.Points.ToString(), posPointsBat2, Color.White);
+            game.SpriteBatch.DrawString(game.FontTitle, bat1.Points.ToString(), posPointsBat1, TextColor);
+            game.SpriteBatch.DrawString(game.FontTitle, secondBat.Points.ToString(), posPointsBat2, TextColor);
             Utils.DrawRectangle(game.SpriteBatch, line, Color.Gray);
             // Bats et ball
             bat1.Draw();
@@ -232,7 +234,7 @@ namespace KiPong
             ball.Draw();
             // Timer si activé
             if (resetTimerInUse)
-                Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, game.ScreenSize, decompte, Color.White);
+                Utils.DrawStringAtCenter(game.SpriteBatch, game.Font, game.ScreenSize, decompte, TextColor);
         }
 
         protected override void LeaveHelp()

@@ -1,5 +1,4 @@
 Content\Font.xnb
-Content\balle.xnb
 Content\aideMenuKinectImg.xnb
 Content\aideMenuKinectTxt.xnb
 Content\WallHit.xnb
@@ -13,3 +12,5 @@ Content\aideJeuKeyboardImg.xnb
 Content\aideJeuKinectImg.xnb
 Content\aideJeuKeyboardTxt.xnb
 Content\aideJeuKinectTxt.xnb
+Content\balleBlanche.xnb
+Content\balleRouge.xnb

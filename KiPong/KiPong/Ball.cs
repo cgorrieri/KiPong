@@ -10,6 +10,9 @@
 
     public class Ball : PongItem
     {
+        public static String BallColor;
+        public static bool ColorChanged;
+
         /// <summary>
         /// Obtien le centre de la balle
         /// </summary>
@@ -46,7 +49,7 @@
             setSpeed(d);
             direction = 0;
             int width = g.ScreenWidth / 20;
-            texture = g.Content.Load<Texture2D>("balle");
+            changeBallColor();
             scale = (float)width / (float)texture.Width;
             size = new Rectangle(0, 0, width, width);
             resetPos = new Vector2(g.ScreenWidth / 2, g.ScreenHeight / 2);
@@ -230,7 +233,12 @@
         }
 
         public override void Update()
-        {            
+        {
+            if (ColorChanged)
+            {
+                changeBallColor();
+                ColorChanged = false;
+            }
             for (int i = maxSizeListePosition - 1; i > 0; i--)
                 traineePosition[i] = traineePosition[i - 1];
 
@@ -257,6 +265,11 @@
                 // On dessine la balle
                 game.SpriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
+        }
+
+        public void changeBallColor()
+        {
+            texture = game.Content.Load<Texture2D>("balle" + BallColor);
         }
     }
 }

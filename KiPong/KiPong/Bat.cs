@@ -7,6 +7,10 @@
 
     public abstract class Bat : PongItem
     {
+        public static Color Background;
+
+        private Color CurBackground;
+
         private int points;
         /// <summary>
         /// Obtient les points que le joueur a marqué
@@ -34,9 +38,7 @@
             int cote = game.ScreenHeight / getRatio(d);
             int apparentWidth = game.ScreenWidth / RatioWidth;
             texture = new Texture2D(game.GraphicsDevice, cote, cote);
-            Color[] dataTitle = new Color[cote * cote];
-            for (int index = 0; index < dataTitle.Length; ++index) dataTitle[index] = Color.Yellow;
-            texture.SetData(dataTitle);
+            changeColor();
             size = new Rectangle(0, 0, cote, cote);
             if (side == Side.LEFT) position = new Vector2(apparentWidth - cote, game.ScreenHeight / 2 - cote / 2);
             else position = new Vector2(game.ScreenWidth - apparentWidth, game.ScreenHeight / 2 - cote / 2);
@@ -94,7 +96,19 @@
 
         public override void Draw()
         {
+            if (!Background.Equals(CurBackground))
+            {
+                changeColor();
+                CurBackground = Background;
+            }
             game.SpriteBatch.Draw(texture, position, Color.White);
+        }
+
+        private void changeColor()
+        {
+            Color[] dataTitle = new Color[texture.Width * texture.Width];
+            for (int index = 0; index < dataTitle.Length; ++index) dataTitle[index] = Background;
+            texture.SetData(dataTitle);
         }
     }
 }

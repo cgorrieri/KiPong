@@ -50,8 +50,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="balle.png">
-      <Name>balle</Name>
+    <Compile Include="balleBlanche.png">
+      <Name>balleBlanche</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -136,6 +136,13 @@
   <ItemGroup>
     <Compile Include="aideMenuKinectImg.png">
       <Name>aideMenuKinectImg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="balleRouge.png">
+      <Name>balleRouge</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

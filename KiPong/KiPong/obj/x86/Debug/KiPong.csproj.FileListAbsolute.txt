@@ -1,7 +1,6 @@
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\Font.xnb
-D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\balle.xnb
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\KiPong.exe
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\KiPong.pdb
 D:\Cours\Devint\KiPong\KiPong\KiPong\obj\x86\Debug\KiPong.exe
@@ -19,3 +18,5 @@ D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardImg.xn
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectImg.xnb
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardTxt.xnb
 D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKinectTxt.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\balleBlanche.xnb
+D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\balleRouge.xnb
