@@ -12,9 +12,7 @@ namespace KiPong
 
     public abstract class Menu : Helpable
     {
-        private static Color Gray = new Color(238, 238, 238);
-        private static Color DarkGray = new Color(128, 128, 128);
-        private static Color Blue = new Color(10, 0, 150);
+        public static Color Backgroung, Border, ItemsBackground, ItemColor;
         private static float ratioTitle = 5f / 16f;
 
         // Menu
@@ -109,15 +107,15 @@ namespace KiPong
             base.Draw();
             if (isPrintingHelp) return;
 
-            game.SpriteBatch.GraphicsDevice.Clear(Gray);
+            game.SpriteBatch.GraphicsDevice.Clear(Backgroung);
 
             isDraw = start;
             // On dessine le titre
-            Utils.DrawRectangle(game.SpriteBatch, bordTitle, DarkGray);
-            Utils.DrawRectangle(game.SpriteBatch, rectTitle, Gray);
-            Utils.DrawStringAtCenter(game.SpriteBatch, game.FontTitle, rectTitle, Title, Blue);
+            Utils.DrawRectangle(game.SpriteBatch, bordTitle, Border);
+            Utils.DrawRectangle(game.SpriteBatch, rectTitle, Backgroung);
+            Utils.DrawStringAtCenter(game.SpriteBatch, game.FontTitle, rectTitle, Title, ItemColor);
             // On dessine les items
-            Utils.DrawRectangle(game.SpriteBatch, rectItems, Color.Black);
+            Utils.DrawRectangle(game.SpriteBatch, rectItems, ItemsBackground);
             rectItem.Y = rectItems.Y + margin;
             if (menuItems != null)
             {
@@ -127,11 +125,11 @@ namespace KiPong
                     if (i == Iterator)
                     {
                         back = Color.White;
-                        font = Blue;
+                        font = ItemColor;
                     }
                     else
                     {
-                        back = Blue;
+                        back = ItemColor;
                         font = Color.White;
                     }
                     Utils.DrawRectangle(game.SpriteBatch, rectItem, back);

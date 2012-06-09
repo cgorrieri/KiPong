@@ -79,6 +79,7 @@ namespace KiPong
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            ColorManager.InitializeColors();
         }
 
         /// <summary>
@@ -196,6 +197,11 @@ namespace KiPong
             if (keyboardInput.Exit)
             {
                 this.Exit();
+            }
+
+            if (keyboardInput.ChangeColors())
+            {
+                ColorManager.ChangeColors();
             }
 
             // Si le joueur demande de l'aide

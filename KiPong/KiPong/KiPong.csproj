@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIBat.cs" />
+    <Compile Include="ColorManager.cs" />
     <Compile Include="Helpable.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="Bat.cs" />
