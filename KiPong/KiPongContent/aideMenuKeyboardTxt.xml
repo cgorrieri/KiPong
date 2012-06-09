@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="System.String">
-    Pour te déplacer dans le menu, utilise les flèches haut et bas ou les touches z et s.
-    Pour valider appui su entrez.
-    Pour aller au menu précédent apui sur la touche effacer ou la flèche vers la gauche.
-    Pour faire apparaitre l'aide ou la quitter, appui sur F1.
+    Pour quitter le jeu, appuis sur la touche échap.
+    Pour afficher ou quitter l'aide, appuis sur F1.
+    Pour changer de couleur, appuis sur F2.
+    Pour valider appui sur la touche entrer.
+    Pour revenir au menu précédent, appuis sur la touche effacer.
+    Pour te déplacer dans le menu, utilise les touches z et s ou les flèches haut et bas.
   </Asset>
 </XnaContent>
