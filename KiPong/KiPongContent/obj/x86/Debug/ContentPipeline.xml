@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardImg.xnb</Output>
-      <Time>2012-05-31T09:02:12.258564+02:00</Time>
+      <Time>2012-06-09T15:50:46.254307+02:00</Time>
     </Item>
     <Item>
       <Source>aideMenuKeyboardTxt.xml</Source>
@@ -62,7 +62,7 @@
       <Processor>PassThroughProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideMenuKeyboardTxt.xnb</Output>
-      <Time>2012-05-27T15:54:44.7271211+02:00</Time>
+      <Time>2012-06-09T15:56:43.0217126+02:00</Time>
     </Item>
     <Item>
       <Source>FontTitle.spritefont</Source>
@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardImg.xnb</Output>
-      <Time>2012-05-31T09:05:16.1800837+02:00</Time>
+      <Time>2012-06-09T15:38:22.9286014+02:00</Time>
     </Item>
     <Item>
       <Source>aideJeuKinectImg.png</Source>
@@ -116,7 +116,7 @@
       <Processor>PassThroughProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Cours\Devint\KiPong\KiPong\KiPong\bin\x86\Debug\Content\aideJeuKeyboardTxt.xnb</Output>
-      <Time>2012-05-31T08:29:29.733314+02:00</Time>
+      <Time>2012-06-09T15:54:21.839908+02:00</Time>
     </Item>
     <Item>
       <Source>aideJeuKinectTxt.xml</Source>
