@@ -9,7 +9,7 @@ namespace KiPong
 {
     public enum Difficulty { EASY, MEDIUM, HARD };
 
-    public enum Side { LEFT, RIGHT, TOP, BOTTOM };
+    public enum Side { LEFT, RIGHT};
 
     /// <summary>
     /// Je jeu principale qui contient les menus et le jeu
@@ -80,7 +80,6 @@ namespace KiPong
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             ColorManager.InitializeColors();
-            Console.WriteLine(Color.Beige.ToString());
         }
 
         /// <summary>
