@@ -14,7 +14,8 @@
         <author><![CDATA[J&eacute;r&eacute;mie Blond]]></author>
     </authors>
     <notes>
-		<note> <![CDATA[Les enfants doivent meusurer au moins 1m20]]></note>
+		<note><![CDATA[Les enfants doivent meusurer au moins 1m20]]></note>
+        <note><![CDATA[Hierarchie des class <a href="KiPong/Hierarchy.pdf">PDF</a>]]></note>
 	</notes>
     <gameplay><![CDATA[
     <h2>Jeu tous le jeu</h2>
@@ -62,7 +63,7 @@
 <gamerules><![CDATA[
 	<h2>Compilation et ex&eacute;cution :</h4>
 	<ul>
-	<li>pour la compilation ouvrir le projet, ouvrir le fichier src/KiPong.sln avec visual studio 2010. Il faut avoir installer XNA 4.0 et le SDK kinect</li>
+	<li>pour la compilation ouvrir le projet, ouvrir le fichier src/KiPong.sln avec visual studio 2010. Il faut avoir installer .NET 4.0, XNA 4.0 et le SDK kinect</li>
 	<li>KiPong/bin/execution.bat ex&eacute;cute le projet, bin est le r&eacute;pertoire d&rsquo;ex&eacute;cution</li>
 	</ul>
 ]]></gamerules>
